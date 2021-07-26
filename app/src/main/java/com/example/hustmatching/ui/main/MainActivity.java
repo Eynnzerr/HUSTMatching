@@ -1,4 +1,4 @@
-package com.example.hustmatching.ui;
+package com.example.hustmatching.ui.main;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;

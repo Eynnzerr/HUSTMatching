@@ -7,15 +7,15 @@
 
     <fragment
         android:id="@+id/releaseFragment"
-        android:name="com.example.hustmatching.ui.ReleaseFragment" />
+        android:name="com.example.hustmatching.ui.main.ReleaseFragment" />
     <fragment
         android:id="@+id/browseFragment"
-        android:name="com.example.hustmatching.ui.BrowseFragment"
+        android:name="com.example.hustmatching.ui.main.BrowseFragment"
         android:label="浏览"
         tools:layout="@layout/fragment_browse" />
     <fragment
         android:id="@+id/personalFragment"
-        android:name="com.example.hustmatching.ui.PersonalFragment"
+        android:name="com.example.hustmatching.ui.main.PersonalFragment"
         android:label="个人主页"
         tools:layout="@layout/fragment_personal" />
 </navigation>

@@ -10,7 +10,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.PersonalFragment">
+        tools:context=".ui.main.PersonalFragment">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -33,6 +33,65 @@
                     android:textColor="@color/white"
                     android:textSize="22sp" />
             </androidx.appcompat.widget.Toolbar>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/user_image"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_below="@id/personal_bar"
+                android:src="@drawable/default_image"
+                android:layout_margin="20dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/user_image"
+                android:layout_below="@id/personal_bar"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="30dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="用户名"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:id="@+id/user_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="学号（实名认证）"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/release_btn"
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:text="我的发布"
+                android:layout_margin="20dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/user_image"/>
+
+            <Button
+                android:id="@+id/match_btn"
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:text="我的匹配"
+                android:layout_margin="20dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/release_btn"/>
+
+            <Button
+                android:id="@+id/contact_btn"
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:text="我的联系"
+                android:layout_margin="20dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/match_btn"/>
         </RelativeLayout>
 
     </FrameLayout>
