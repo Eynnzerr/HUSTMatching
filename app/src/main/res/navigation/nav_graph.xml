@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/releaseFragment">
 
+    <fragment
+        android:id="@+id/releaseFragment"
+        android:name="com.example.hustmatching.ui.ReleaseFragment" />
+    <fragment
+        android:id="@+id/browseFragment"
+        android:name="com.example.hustmatching.ui.BrowseFragment"
+        android:label="浏览"
+        tools:layout="@layout/fragment_browse" />
+    <fragment
+        android:id="@+id/personalFragment"
+        android:name="com.example.hustmatching.ui.PersonalFragment"
+        android:label="个人主页"
+        tools:layout="@layout/fragment_personal" />
 </navigation>
