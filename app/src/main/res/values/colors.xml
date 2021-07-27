@@ -8,4 +8,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="authen_color">#F8CB72</color>
+    <color name="state_color_1">#F1A100</color>
 </resources>

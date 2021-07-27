@@ -12,15 +12,16 @@ import androidx.annotation.Nullable;
 
 import com.example.hustmatching.R;
 
-public class AuthenticationEditText extends LinearLayout {
+public class AuthenticationEditText extends EditLinearLayout {
 
     public AuthenticationEditText(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         LayoutInflater.from(context).inflate(R.layout.authens_myview, this);
+        editText = findViewById(R.id.authens_box);
     }
 
     public boolean isBoxEmpty() {
-        EditText editText = findViewById(R.id.email_box);
+        //EditText editText = findViewById(R.id.email_box);
         return editText.getText().toString().isEmpty();
     }
 
@@ -32,4 +33,5 @@ public class AuthenticationEditText extends LinearLayout {
     public TextView getTextView() {
         return findViewById(R.id.authens_request);
     }
+
 }
