@@ -33,6 +33,34 @@
                 android:layout_below="@id/login_title"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp" />
+            
+            <com.example.hustmatching.view.EmailEditText
+                android:id="@+id/email_bar"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/login_line"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"/>
+
+            <com.example.hustmatching.view.AuthenticationEditText
+                android:id="@+id/authens_bar"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/email_bar"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="18dp" />
+
+            <Button
+                android:id="@+id/btn_register"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/authens_bar"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/rec_bg_3"
+                android:text="注册"
+                android:textColor="#F1A100"
+                android:textSize="20sp" />
         </RelativeLayout>
 
 
