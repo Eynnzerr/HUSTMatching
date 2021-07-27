@@ -1,6 +1,7 @@
-package com.example.hustmatching.Retrofit;
+package com.example.hustmatching.retrofit;
 
-import com.example.hustmatching.bean.Reception;
+
+import com.example.hustmatching.bean.Token;
 
 import java.util.concurrent.TimeUnit;
 
@@ -34,12 +35,12 @@ public class HttpUtil {
         return retrofit;
     }
 
-    public static Call<Reception> getRegisterCall(String studentID, String auth) {
+    public static Call<Response> getRegisterCall(String studentID, String auth) {
         RegisterService registerService = getRetrofit().create(RegisterService.class);
         return registerService.register(studentID, auth);
     }
 
-    public static Call<Reception> getLoginCall(String userName, String password) {
+    public static Call<DataResponse<Token>> getLoginCall(String userName, String password) {
         LoginService loginService = getRetrofit().create(LoginService.class);
         return loginService.login(userName, password);
     }

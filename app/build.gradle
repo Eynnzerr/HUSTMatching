@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application'
+    id 'kotlin-android'
 }
 
 android {
@@ -8,15 +9,16 @@ android {
 
     defaultConfig {
         applicationId "com.example.hustmatching"
-        minSdkVersion 16
+        minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        dataBinding {
-            enabled true
+
+        buildFeatures{
+            dataBinding true
         }
     }
 
@@ -36,7 +38,7 @@ dependencies {
 
     implementation 'de.hdodenhof:circleimageview:2.1.0'
 
-    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
     implementation 'com.google.code.gson:gson:2.8.6'
 
@@ -48,6 +50,8 @@ dependencies {
     implementation 'androidx.annotation:annotation:1.2.0'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
+
+    implementation("androidx.security:security-crypto:1.0.0")
 
     def nav_version = "2.3.5"
 

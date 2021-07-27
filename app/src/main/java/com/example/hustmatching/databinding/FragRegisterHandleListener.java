@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.view.View;
 
 import com.example.hustmatching.R;
-import com.example.hustmatching.Retrofit.HttpUtil;
-import com.example.hustmatching.Retrofit.RegisterService;
 
 public class FragRegisterHandleListener {
 
