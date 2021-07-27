@@ -1,4 +1,4 @@
-package com.example.hustmatching.Retrofit
+package com.example.hustmatching.retrofit
 
 import com.example.hustmatching.bean.Reception
 import retrofit2.Call

@@ -1,4 +1,4 @@
-package com.example.hustmatching.Retrofit
+package com.example.hustmatching.retrofit
 
 object Api {
     const val BASE_URL:String = ""

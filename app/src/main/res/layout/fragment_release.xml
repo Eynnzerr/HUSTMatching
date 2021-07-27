@@ -32,7 +32,101 @@
                     android:text="发布"
                     android:textColor="@color/white"
                     android:textSize="22sp" />
+
+                <ImageView
+                    android:id="@+id/release_search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_search_24"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="10dp"/>
             </androidx.appcompat.widget.Toolbar>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/search_items"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="10dp"
+                android:elevation="5dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="240dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/circle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/circle"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="10dp"/>
+
+                    <TextView
+                        android:id="@+id/title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="寻物"
+                        android:layout_toRightOf="@id/circle"
+                        android:layout_centerVertical="true"
+                        android:textSize="26sp"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/right"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/title"
+                        android:layout_marginLeft="68dp"/>
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/search_people"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="10dp"
+                android:elevation="5dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="340dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/circle1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/circle"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="10dp"/>
+
+                    <TextView
+                        android:id="@+id/title1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="寻人"
+                        android:layout_toRightOf="@id/circle1"
+                        android:layout_centerVertical="true"
+                        android:textSize="26sp"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/right"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/title1"
+                        android:layout_marginLeft="68dp"/>
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
 
         </RelativeLayout>
 

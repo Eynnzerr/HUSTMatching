@@ -2,12 +2,15 @@ package com.example.hustmatching.databinding;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.navigation.Navigation;
 
 import com.example.hustmatching.R;
+import com.example.hustmatching.ui.main.MainActivity;
 import com.example.hustmatching.utils.AlertDialogUtil;
 
 public class FragLoginHandleListener {
@@ -42,6 +45,9 @@ public class FragLoginHandleListener {
                 }
                 else {
                     //用户、密码均已输入。验证是否正确，如果正确，跳转至MainActivity，否则弹出alertDialog:用户名或密码错误
+                    Intent intent = new Intent(activity, MainActivity.class);
+                    Toast.makeText(activity,"登录成功",Toast.LENGTH_SHORT).show();
+                    activity.startActivity(intent);
                 }
                 break;
             case R.id.btn_register:

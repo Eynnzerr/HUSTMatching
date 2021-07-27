@@ -1,4 +1,4 @@
-package com.example.hustmatching.Retrofit;
+package com.example.hustmatching.retrofit;
 
 import com.example.hustmatching.bean.Reception;
 
@@ -43,6 +43,5 @@ public class HttpUtil {
         LoginService loginService = getRetrofit().create(LoginService.class);
         return loginService.login(userName, password);
     }
-
 
 }

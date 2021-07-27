@@ -7,7 +7,11 @@
 
     <fragment
         android:id="@+id/releaseFragment"
-        android:name="com.example.hustmatching.ui.main.ReleaseFragment" />
+        android:name="com.example.hustmatching.ui.main.ReleaseFragment" >
+        <action
+            android:id="@+id/action_releaseFragment_to_searchItemFragment"
+            app:destination="@id/searchItemFragment" />
+    </fragment>
     <fragment
         android:id="@+id/browseFragment"
         android:name="com.example.hustmatching.ui.main.BrowseFragment"
@@ -18,4 +22,9 @@
         android:name="com.example.hustmatching.ui.main.PersonalFragment"
         android:label="个人主页"
         tools:layout="@layout/fragment_personal" />
+    <fragment
+        android:id="@+id/searchItemFragment"
+        android:name="com.example.hustmatching.ui.main.SearchItemFragment"
+        android:label="fragment_search_item"
+        tools:layout="@layout/fragment_search_item" />
 </navigation>

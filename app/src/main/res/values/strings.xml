@@ -12,4 +12,6 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="email_format">@hust.edu.cn</string>
+    <string name="register_description2">请输入你的校园邮箱账户，我们会为你发送一个验证码，以便确认你的身份。</string>
+    <string name="register_description1">感谢您的信任与使用，我们保证您的邮箱将仅用于本次验证，更多信息详见《用户协议及隐私政策》。</string>
 </resources>
