@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
             name="loginFragListener"
             type="com.example.hustmatching.databinding.FragLoginHandleListener" />
+        <variable
+            name="viewModel"
+            type="com.example.hustmatching.viewmodel.LoginFragViewModel" />
     </data>
 
     <FrameLayout
@@ -42,7 +46,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/login_line"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="50dp" />
+                android:layout_marginTop="50dp"
+                app:barText="@={viewModel.account}"/>
 
             <com.example.hustmatching.view.PasswordEditText
                 android:id="@+id/login_password_bar"
@@ -50,7 +55,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/login_account_bar"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="18dp" />
+                android:layout_marginTop="18dp"
+                app:barText="@={viewModel.password}"/>
 
             <Button
                 android:id="@+id/btn_login"
@@ -65,18 +71,37 @@
                 android:textSize="28sp"
                 android:onClick="@{loginFragListener::onButtonClicked}"/>
 
-            <Button
-                android:id="@+id/btn_register"
-                android:layout_width="350dp"
-                android:layout_height="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
                 android:layout_below="@id/btn_login"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="18dp"
-                android:background="@drawable/rec_bg_3"
-                android:text="注册"
-                android:textColor="#F1A100"
-                android:textSize="28sp"
-                android:onClick="@{loginFragListener::onButtonClicked}"/>
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/to_authen_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="验证码登录"
+                    android:layout_toLeftOf="@id/division"
+                    android:onClick="@{loginFragListener::onButtonClicked}"/>
+
+                <TextView
+                    android:id="@+id/division"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/black"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"/>
+
+                <TextView
+                    android:id="@+id/to_register"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="新用户注册"
+                    android:layout_toRightOf="@id/division"
+                    android:onClick="@{loginFragListener::onButtonClicked}"/>
+            </RelativeLayout>
 
 
         </RelativeLayout>

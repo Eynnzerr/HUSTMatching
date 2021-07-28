@@ -50,9 +50,11 @@ public class FragLoginHandleListener {
                     activity.startActivity(intent);
                 }
                 break;
-            case R.id.btn_register:
+            case R.id.to_register:
                 Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_registerFragment);
                 break;
+            case R.id.to_authen_login:
+                Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_loginByEmailFragment);
             default:
         }
     }

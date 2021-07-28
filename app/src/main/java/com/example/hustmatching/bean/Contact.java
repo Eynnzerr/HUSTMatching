@@ -2,16 +2,14 @@ package com.example.hustmatching.bean;
 
 import com.google.gson.annotations.SerializedName;
 
+//由于pm把联系方式只保留了qq和手机号，再对联系方式做这样的封装很多余，故弃用
+@Deprecated
 public class Contact {
 
     @SerializedName("qq")
     private Integer qq;
-    @SerializedName("wechat")
-    private String wechat;
     @SerializedName("phone")
     private Long phone;
-    @SerializedName("email")
-    private String email;
 
     public Integer getQq() {
         return qq;
@@ -19,14 +17,6 @@ public class Contact {
 
     public void setQq(Integer qq) {
         this.qq = qq;
-    }
-
-    public String getWechat() {
-        return wechat;
-    }
-
-    public void setWechat(String wechat) {
-        this.wechat = wechat;
     }
 
     public Long getPhone() {
@@ -37,11 +27,4 @@ public class Contact {
         this.phone = phone;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }
