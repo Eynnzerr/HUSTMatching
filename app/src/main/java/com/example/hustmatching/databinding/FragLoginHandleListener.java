@@ -53,7 +53,7 @@ public class FragLoginHandleListener {
             case R.id.to_register:
                 Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_registerFragment);
                 break;
-            case R.id.to_password_login:
+            case R.id.to_authen_login:
                 Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_loginByEmailFragment);
             default:
         }

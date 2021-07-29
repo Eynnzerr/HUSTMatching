@@ -1,0 +1,12 @@
+{
+  "studentID": "U202012123", //发送者的学号
+  "title": "找这个耳机的主人", //标题
+  "classification": "#寻失主", //分类
+  "tags": ["蓝牙耳机","华为","白色"], //关键词，只有3条
+  "detail": "asdafnssdjffidjcosdjvojeioevmsdkimiojwfeieiovj",//纯文本详细描述
+  "time": "yyyy-MM-dd 下午",//用户填写的日期
+  "location": "韵酒",//用户填写时间
+  "qq": "123456789",//qq
+  "phone": "1243554523567",//电话
+  "date": "yyyy-MM-dd"//文章发布时间
+}

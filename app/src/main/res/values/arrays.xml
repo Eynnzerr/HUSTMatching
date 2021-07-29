@@ -5,4 +5,19 @@
         <item>下午</item>
         <item>晚上</item>
     </string-array>
+    <string-array name="sex">
+        <item>男</item>
+        <item>女</item>
+        <item>未知</item>
+    </string-array>
+    <string-array name="interval">
+        <item>15天</item>
+        <item>30天</item>
+        <item>60天</item>
+    </string-array>
+    <string-array name="reminder">
+        <item>接受并提醒</item>
+        <item>接受但不提醒</item>
+        <item>不接受</item>
+    </string-array>
 </resources>
