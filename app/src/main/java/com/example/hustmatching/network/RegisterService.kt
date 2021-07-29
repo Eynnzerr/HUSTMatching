@@ -1,5 +1,6 @@
-package com.example.hustmatching.retrofit
+package com.example.hustmatching.network
 
+import com.example.hustmatching.response.Response
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded

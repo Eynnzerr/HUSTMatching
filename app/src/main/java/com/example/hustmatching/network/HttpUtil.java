@@ -1,10 +1,14 @@
-package com.example.hustmatching.retrofit;
+package com.example.hustmatching.network;
 
 
-import com.example.hustmatching.bean.Token;
+import com.example.hustmatching.response.LoginData;
+import com.example.hustmatching.response.DataResponse;
+import com.example.hustmatching.response.Response;
+
 
 import java.util.concurrent.TimeUnit;
 
+import kotlin.Result;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -40,7 +44,7 @@ public class HttpUtil {
         return registerService.register(studentID, auth);
     }
 
-    public static Call<DataResponse<Token>> getLoginCall(String userName, String password) {
+    public static Call<DataResponse<LoginData>> getLoginCall(String userName, String password) {
         LoginService loginService = getRetrofit().create(LoginService.class);
         return loginService.login(userName, password);
     }
