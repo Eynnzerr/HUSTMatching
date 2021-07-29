@@ -9,22 +9,29 @@ object Repository {
 
     private val defaultDispatcher = Dispatchers.IO
 
-    suspend fun login(username: String, password: String) {
-        withContext(defaultDispatcher){
-            Network.login(username, password)
-        }
+    var token:String = ""
+
+    suspend fun loginByPassword(studentID: String, password: String) =
+            withContext(defaultDispatcher) {
+                Network.loginByPassword(studentID, password)
+            }
+
+    suspend fun loginByEmail(studentID: String, auth: String) =
+            withContext(defaultDispatcher) {
+                Network.loginByEmail(studentID, auth)
+            }
+
+    suspend fun getAuth(studentID: String) =
+            withContext(defaultDispatcher) {
+                Network.getAuth(studentID)
+
+            }
+
+    suspend fun verify(studentID: String,auth:String) = withContext(defaultDispatcher){
+        Network.verify(studentID, auth)
     }
 
-    suspend fun getAuth(studentID:String) =
-        withContext(defaultDispatcher){
-            Network.getAuth(studentID)
-        }
-
-    suspend fun getDailyWeather() = withContext(defaultDispatcher){
-        Log.d("coroutine","reposity before: ${Thread.currentThread().name}")
-        Network.getDailyWeather()
-
+    suspend fun register(studentID: String,username: String,password: String) = withContext(defaultDispatcher){
+        Network.register(studentID, username, password)
     }
-
-
 }

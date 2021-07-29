@@ -28,7 +28,6 @@ public class ViewBindingAdapter {
     //为EditLinearLayout的barText属性提供从view到model的绑定
     @InverseBindingAdapter(attribute = "barText", event = "textAttrChanged")
     public static String getBarText(EditLinearLayout view) {
-        Log.d(TAG, "getBarText: ");
         return view.getEditText().getText().toString();
     }
 

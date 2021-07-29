@@ -1,3 +1,3 @@
 package com.example.hustmatching.response
 
-class DataResponse<T>(val code: Int, val msg: String, val data: T)
+class DataResponse<T>(val data: T, code: Int, msg: String) : Response(code, msg)

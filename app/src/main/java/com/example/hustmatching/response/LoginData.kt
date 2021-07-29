@@ -1,3 +1,3 @@
 package com.example.hustmatching.response
 
-class LoginData(val token: String,val isAdmin: Boolean)
+data class LoginData(val token: String,val isAdmin: Boolean)

@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.hustmatching.R;
+import com.example.hustmatching.base.BaseApplication;
 import com.example.hustmatching.databinding.FragmentRegisterBinding;
 import com.example.hustmatching.viewmodel.RegisterFragViewModel;
 
@@ -83,20 +84,26 @@ public class RegisterFragment extends Fragment {
             @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View v) {
-                //TODO 发送验证码至所填邮箱
+                viewModel.getAuth(viewModel.getEmail().getValue());
                 mCountDownTimer.start();
 
+            }
+        });
+
+        viewModel.getVerified().observe(getViewLifecycleOwner(),verified ->{
+            if (verified){
+                viewModel.getVerified().postValue(false);
+                Bundle bundle = new Bundle();
+                bundle.putString("studentID",viewModel.getEmail().getValue());
+                Navigation.findNavController(view).navigate(R.id.action_registerFragment_to_settingFragment, bundle);
             }
         });
 
         binding.btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO 确认验证码正确后跳转至账户和密码设置界面
-                Log.d(TAG, "onClick: ");
-                Bundle bundle = new Bundle();
-                bundle.putString("studentID",viewModel.getEmail().getValue());
-                Navigation.findNavController(v).navigate(R.id.action_registerFragment_to_settingFragment, bundle);
+                viewModel.verify(viewModel.getEmail().getValue(),viewModel.getAuthen().getValue());
+
             }
         });
 
@@ -106,8 +113,7 @@ public class RegisterFragment extends Fragment {
             @SuppressLint("ResourceAsColor")
             @Override
             public void onChanged(String s) {
-                Log.d(TAG, "authen onChanged: " + s);
-                if (Pattern.matches("^\\d{6}$", s)) {
+              if (Pattern.matches("^\\d{6}$", s)) {
 
                     binding.btnRegister.setBackground(getResources().getDrawable(R.drawable.rec_bg_4));
                     binding.btnRegister.setTextColor(Color.WHITE);
