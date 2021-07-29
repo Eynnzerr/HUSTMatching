@@ -14,8 +14,10 @@ public class NetPost {
     private List<String> tags;
     @SerializedName("detail")
     private String detail;
-    @SerializedName("contact")
-    private Contact contact;
+    @SerializedName("qq")
+    private String qq;
+    @SerializedName("phone")
+    private String phone;
 
     public String getTitle() {
         return title;
@@ -49,11 +51,19 @@ public class NetPost {
         this.detail = detail;
     }
 
-    public Contact getContact() {
-        return contact;
+    public String getQq() {
+        return qq;
     }
 
-    public void setContact(Contact contact) {
-        this.contact = contact;
+    public void setQq(String qq) {
+        this.qq = qq;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

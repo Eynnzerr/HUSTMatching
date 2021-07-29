@@ -1,69 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.login.SettingFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <RelativeLayout
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.hustmatching.viewmodel.SettingFragViewModel" />
+    </data>
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".ui.login.SettingFragment">
 
-        <TextView
-            android:id="@+id/login_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="HUST matcher"
-            android:textColor="#F1A100"
-            android:textSize="35sp"
-            android:layout_marginTop="160dp"
-            android:layout_marginLeft="30dp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/login_line"
-            android:layout_width="350dp"
-            android:layout_height="1dp"
-            android:background="#F1A100"
-            android:layout_below="@id/login_title"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp" />
+            <TextView
+                android:id="@+id/login_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HUST matcher"
+                android:textColor="#F1A100"
+                android:textSize="35sp"
+                android:layout_marginTop="160dp"
+                android:layout_marginLeft="30dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="请设置你的账户及密码"
-            android:layout_marginLeft="30dp"
-            android:layout_below="@id/login_line"
-            android:layout_marginTop="25dp"/>
+            <TextView
+                android:id="@+id/login_line"
+                android:layout_width="350dp"
+                android:layout_height="1dp"
+                android:background="#F1A100"
+                android:layout_below="@id/login_title"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp" />
 
-        <com.example.hustmatching.view.AccountEditText
-            android:id="@+id/login_account_bar"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/login_line"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="请设置你的账户及密码"
+                android:layout_marginLeft="30dp"
+                android:layout_below="@id/login_line"
+                android:layout_marginTop="25dp" />
 
-        <com.example.hustmatching.view.PasswordEditText
-            android:id="@+id/login_password_bar"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/login_account_bar"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="18dp" />
+            <com.example.hustmatching.view.AccountEditText
+                android:id="@+id/login_account_bar"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/login_line"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"
+                app:barText="@={viewModel.account}"/>
 
-        <Button
-            android:id="@+id/btn_login"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/login_password_bar"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/rec_bg_2"
-            android:text="确定"
-            android:textColor="@color/white"
-            android:textSize="28sp" />
+            <com.example.hustmatching.view.PasswordEditText
+                android:id="@+id/login_password_bar"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/login_account_bar"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="18dp"
+                app:barText="@={viewModel.password}"/>
 
-    </RelativeLayout>
+            <Button
+                android:id="@+id/btn_login"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/login_password_bar"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/rec_bg_2"
+                android:text="确定"
+                android:textColor="@color/white"
+                android:textSize="28sp" />
 
-</FrameLayout>
+        </RelativeLayout>
+
+    </FrameLayout>
+</layout>

@@ -44,15 +44,17 @@ public class FragLoginHandleListener {
                     AlertDialogUtil.createErrorDialog(activity,"请输入密码");
                 }
                 else {
-                    //用户、密码均已输入。验证是否正确，如果正确，跳转至MainActivity，否则弹出alertDialog:用户名或密码错误
+                    //TODO 用户、密码均已输入。验证是否正确，如果正确，跳转至MainActivity，否则弹出alertDialog:用户名或密码错误
                     Intent intent = new Intent(activity, MainActivity.class);
                     Toast.makeText(activity,"登录成功",Toast.LENGTH_SHORT).show();
                     activity.startActivity(intent);
                 }
                 break;
-            case R.id.btn_register:
+            case R.id.to_register:
                 Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_registerFragment);
                 break;
+            case R.id.to_password_login:
+                Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_loginByEmailFragment);
             default:
         }
     }

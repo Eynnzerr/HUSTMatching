@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="releaseFragListener"
+            type="com.example.hustmatching.databinding.FragReleaseHandleListener" />
     </data>
 
     <FrameLayout
@@ -49,7 +51,8 @@
                 app:cardCornerRadius="10dp"
                 android:elevation="5dp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="240dp">
+                android:layout_marginTop="240dp"
+                android:onClick="@{releaseFragListener::onClicked}">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -92,7 +95,8 @@
                 app:cardCornerRadius="10dp"
                 android:elevation="5dp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="340dp">
+                android:layout_marginTop="340dp"
+                android:onClick="@{releaseFragListener::onClicked}">
 
                 <RelativeLayout
                     android:layout_width="match_parent"

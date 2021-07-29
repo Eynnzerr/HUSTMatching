@@ -70,7 +70,9 @@
                 android:id="@+id/release_btn"
                 android:layout_width="300dp"
                 android:layout_height="60dp"
+                android:background="@drawable/rec_bg_2"
                 android:text="我的发布"
+                android:textColor="@color/white"
                 android:layout_margin="20dp"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@id/user_image"/>
@@ -79,7 +81,9 @@
                 android:id="@+id/match_btn"
                 android:layout_width="300dp"
                 android:layout_height="60dp"
+                android:background="@drawable/rec_bg_2"
                 android:text="我的匹配"
+                android:textColor="@color/white"
                 android:layout_margin="20dp"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@id/release_btn"/>
@@ -88,7 +92,9 @@
                 android:id="@+id/contact_btn"
                 android:layout_width="300dp"
                 android:layout_height="60dp"
+                android:background="@drawable/rec_bg_2"
                 android:text="我的联系"
+                android:textColor="@color/white"
                 android:layout_margin="20dp"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@id/match_btn"/>

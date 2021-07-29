@@ -10,7 +10,18 @@
         android:name="com.example.hustmatching.ui.main.ReleaseFragment" >
         <action
             android:id="@+id/action_releaseFragment_to_searchItemFragment"
-            app:destination="@id/searchItemFragment" />
+            app:destination="@id/searchItemFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_releaseFragment_to_searchPeopleFragment"
+            app:destination="@id/searchPeopleFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/browseFragment"
@@ -26,5 +37,23 @@
         android:id="@+id/searchItemFragment"
         android:name="com.example.hustmatching.ui.main.SearchItemFragment"
         android:label="fragment_search_item"
-        tools:layout="@layout/fragment_search_item" />
+        tools:layout="@layout/fragment_search_item" >
+        <action
+            android:id="@+id/action_searchItemFragment_to_itemEditFragment1"
+            app:destination="@id/itemEditFragment1"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/itemEditFragment1"
+        android:name="com.example.hustmatching.ui.main.ItemEditFragment1"
+        android:label="fragment_item_edit1"
+        tools:layout="@layout/fragment_item_edit1" />
+    <fragment
+        android:id="@+id/searchPeopleFragment"
+        android:name="com.example.hustmatching.ui.main.SearchPeopleFragment"
+        android:label="fragment_search_people"
+        tools:layout="@layout/fragment_search_people" />
 </navigation>
