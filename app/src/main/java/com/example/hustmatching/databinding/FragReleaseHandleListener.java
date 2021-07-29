@@ -14,6 +14,7 @@ public class FragReleaseHandleListener {
                 Navigation.findNavController(view).navigate(R.id.action_releaseFragment_to_searchItemFragment);
                 break;
             case R.id.search_people:
+                Navigation.findNavController(view).navigate(R.id.action_releaseFragment_to_searchPeopleFragment);
                 break;
         }
     }

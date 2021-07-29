@@ -40,7 +40,7 @@ public class FragEmailLoginListener {
                     AlertDialogUtil.createErrorDialog(activity,"请输入验证码");
                 }
                 else {
-                    //邮箱、验证码均已输入。验证验证码是否正确，如果正确，跳转至MainActivity，否则弹出alertDialog:验证码错误
+                    //TODO 邮箱、验证码均已输入。验证验证码是否正确，如果正确，跳转至MainActivity，否则弹出alertDialog:验证码错误
                     Intent intent = new Intent(activity, MainActivity.class);
                     Toast.makeText(activity,"登录成功",Toast.LENGTH_SHORT).show();
                     activity.startActivity(intent);

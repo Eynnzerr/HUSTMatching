@@ -30,6 +30,10 @@
         android:name="com.example.hustmatching.ui.login.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" >
+        <argument
+            android:name="studentID"
+            app:argType="string"
+            android:defaultValue='"error"'/>
         <action
             android:id="@+id/action_registerFragment_to_settingFragment"
             app:destination="@id/settingFragment"

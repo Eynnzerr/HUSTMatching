@@ -67,7 +67,9 @@ public class RegisterFragment extends Fragment {
             public void onClick(View v) {
                 //TODO 确认验证码正确后跳转至账户和密码设置界面
                 Log.d(TAG, "onClick: ");
-                Navigation.findNavController(v).navigate(R.id.action_registerFragment_to_settingFragment);
+                Bundle bundle = new Bundle();
+                bundle.putString("studentID",viewModel.getEmail().getValue());
+                Navigation.findNavController(v).navigate(R.id.action_registerFragment_to_settingFragment, bundle);
             }
         });
 
