@@ -2,6 +2,7 @@ package com.example.hustmatching.ui.login;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -104,6 +105,9 @@ public class RegisterFragment extends Fragment {
             public void onClick(View v) {
                 viewModel.verify(viewModel.getEmail().getValue(),viewModel.getAuthen().getValue());
 
+                SharedPreferences.Editor editor = getActivity().getSharedPreferences("ui.main.MainActivity",Context.MODE_PRIVATE).edit();
+                editor.putString("ID", viewModel.getEmail().getValue());
+                editor.apply();
             }
         });
 

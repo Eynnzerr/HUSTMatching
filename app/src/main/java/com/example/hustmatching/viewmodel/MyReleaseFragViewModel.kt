@@ -1,12 +1,18 @@
 package com.example.hustmatching.viewmodel
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.example.hustmatching.bean.NetPost
+import com.example.hustmatching.room.PostDatabase
 import com.example.hustmatching.utils.NetPostUtil
 import java.util.*
 
-class MyReleaseFragViewModel : ViewModel() {
+class MyReleaseFragViewModel(application: Application) : AndroidViewModel(application) {
+
     private var posts: MutableList<NetPost>? = null
+
     fun getPosts(): List<NetPost> {
         //模拟假数据，日后可删
         posts = ArrayList()
@@ -23,4 +29,5 @@ class MyReleaseFragViewModel : ViewModel() {
         }
         return posts as ArrayList<NetPost>
     }
+
 }

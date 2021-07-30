@@ -33,7 +33,7 @@ public class MyReleaseFragment extends Fragment {
         viewModel = new ViewModelProvider(this).get(MyReleaseFragViewModel.class);
         view = inflater.inflate(R.layout.fragment_my_release, container, false);
 
-        //TODO: 发送网络请求，获取当前用户的所有发布。
+        //TODO: 先从本地数据库尝试获取发布，若数据为空，再发送网络请求，获取当前用户的所有发布。
         RecyclerView recyclerView = view.findViewById(R.id.my_release_rv);
         adapter = new PostAdapter(viewModel.getPosts());
         recyclerView.setAdapter(adapter);

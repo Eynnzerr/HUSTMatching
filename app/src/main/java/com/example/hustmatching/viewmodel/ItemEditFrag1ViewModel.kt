@@ -1,6 +1,9 @@
 package com.example.hustmatching.viewmodel
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
+import com.example.hustmatching.bean.NetPost
+import com.example.hustmatching.room.PostDatabase
 import java.util.*
 
 class ItemEditFrag1ViewModel : ViewModel() {
@@ -16,6 +19,12 @@ class ItemEditFrag1ViewModel : ViewModel() {
 
     fun addInfo(information: String) {
         info.add(information)
+    }
+
+    fun addPostToDatabase(post: NetPost, context: Context) {
+        Thread {
+            PostDatabase.getDataBase(context).postDao.insertPost(post)
+        }.start()
     }
 
     init {

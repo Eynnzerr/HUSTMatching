@@ -1,5 +1,7 @@
 package com.example.hustmatching.ui.main;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
 import com.example.hustmatching.R;
 import com.example.hustmatching.databinding.FragPersonalHandleListener;
 import com.example.hustmatching.databinding.FragmentPersonalBinding;
@@ -45,6 +48,14 @@ public class PersonalFragment extends Fragment {
         activity.getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         binding.setHandleListener(new FragPersonalHandleListener());
+
+        SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        String name = sharedPreferences.getString("name","未设置");
+        binding.userName.setText(name);
+        String id = sharedPreferences.getString("ID","未实名认证");
+        binding.userId.setText(id);
+        String imagePath = sharedPreferences.getString("path","");
+        if(imagePath != "") Glide.with(getContext()).load(imagePath).into(binding.userImage);
 
         return view;
     }

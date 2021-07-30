@@ -7,5 +7,5 @@ object Api {
     const val REGISTER_URL:String = "api/user/register/info"
     const val SEND_VERIFY_URL:String = "api/user/auth/send"
     const val VERIFY_URL:String = "api/user/register/auth"
-    const val PUBLISH_URL:String = "/api/seek/object/elec"
+    const val SEND_POST:String = "api/seek/object/elec"//发送一篇发布
 }
