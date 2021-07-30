@@ -17,6 +17,10 @@ class ItemEditFrag1ViewModel : ViewModel() {
         keywords.add(keyword)
     }
 
+    fun resetKeyWord() {
+        keywords.clear()
+    }
+
     fun addInfo(information: String) {
         info.add(information)
     }

@@ -89,6 +89,13 @@ public class MyInfoFragment extends Fragment {
         String profile = sharedPreferences.getString("profile","未设置");
         binding.userProfile.setText(profile);
 
+        binding.back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
+
         binding.editNickname.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

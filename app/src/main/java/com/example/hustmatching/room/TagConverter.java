@@ -1,5 +1,7 @@
 package com.example.hustmatching.room;
 
+import android.util.Log;
+
 import androidx.room.TypeConverter;
 
 import com.google.gson.reflect.TypeToken;
@@ -12,6 +14,8 @@ public class TagConverter {
     @TypeConverter
     public String tagListToString(List<String> list)
     {
+        Log.d("Converter list:", list.toString());
+        Log.d("Converter toJson:",GsonInstance.getInstance().getGson().toJson(list));
         return GsonInstance.getInstance().getGson().toJson(list);
     }
 

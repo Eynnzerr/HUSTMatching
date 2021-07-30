@@ -33,6 +33,13 @@ public class SearchPeopleFragment extends Fragment {
 
         MainActivityViewModel activityViewModel = new ViewModelProvider(getActivity()).get(MainActivityViewModel.class);
         binding.setOptionsListener(new FragSearchItemListener(activityViewModel));
+
+        binding.back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
         return view;
     }
 }

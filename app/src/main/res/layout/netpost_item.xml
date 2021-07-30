@@ -19,7 +19,7 @@
         android:layout_marginLeft="20dp">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/my_post"
+            android:id="@+id/mine_post"
             android:layout_width="300dp"
             android:layout_height="200dp"
             app:cardCornerRadius="10dp"
@@ -40,7 +40,7 @@
                     android:id="@+id/my_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2021.7.29"
+                    android:text="@{myPost.date}"
                     android:layout_alignParentRight="true"
                     android:layout_margin="8dp"/>
                 
@@ -87,7 +87,7 @@
                     android:id="@+id/match_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2021.7.30"
+                    android:text="@{matchedPost.date}"
                     android:layout_alignParentRight="true"
                     android:layout_margin="8dp"/>
 
@@ -154,7 +154,7 @@
                     android:layout_marginLeft="30dp"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/rec_bg"
-                    android:text="@{matchedPost.tags[3]}"
+                    android:text="@{matchedPost.time}"
                     android:textColor="@color/white"
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
@@ -168,7 +168,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/rec_bg"
-                    android:text="@{matchedPost.tags[4]}"
+                    android:text="@{matchedPost.location}"
                     android:textColor="@color/white"
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
@@ -182,7 +182,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/rec_bg"
-                    android:text="@{matchedPost.tags[5]}"
+                    android:text="其他"
                     android:textColor="@color/white"
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"

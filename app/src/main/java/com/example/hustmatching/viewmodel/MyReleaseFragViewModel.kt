@@ -13,6 +13,8 @@ class MyReleaseFragViewModel(application: Application) : AndroidViewModel(applic
 
     private var posts: MutableList<NetPost>? = null
 
+
+
     fun getPosts(): List<NetPost> {
         //模拟假数据，日后可删
         posts = ArrayList()
@@ -29,5 +31,7 @@ class MyReleaseFragViewModel(application: Application) : AndroidViewModel(applic
         }
         return posts as ArrayList<NetPost>
     }
+
+    val mPosts: LiveData<MutableList<NetPost>>? = PostDatabase.getDataBase(application).postDao.allPostsLive
 
 }

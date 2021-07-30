@@ -1,5 +1,7 @@
 package com.example.hustmatching.adapter;
 
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,8 +37,12 @@ public class MatchedPostsAdapter extends RecyclerView.Adapter<MatchedPostsAdapte
         binding.getRoot().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO 将当前选中的netpost详情传给下一碎片
-                Navigation.findNavController(v).navigate(R.id.action_browseFragment_to_detailFragment);
+                //将当前选中的netpost详情传给下一碎片
+                NetPost[] netPosts = matchedPosts.get(viewHolder.getAdapterPosition());
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("netPost", netPosts[1]);
+                //Log.d("debug", "onClick() netPosts[1]" + netPosts[1].toString());
+                Navigation.findNavController(v).navigate(R.id.action_browseFragment_to_detailFragment, bundle);
             }
         });
         return viewHolder;
