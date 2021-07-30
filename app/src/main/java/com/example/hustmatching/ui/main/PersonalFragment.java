@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.hustmatching.R;
+import com.example.hustmatching.databinding.FragPersonalHandleListener;
 import com.example.hustmatching.databinding.FragmentPersonalBinding;
 
 public class PersonalFragment extends Fragment {
@@ -42,6 +43,8 @@ public class PersonalFragment extends Fragment {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_baseline_menu_24);
         activity.getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        binding.setHandleListener(new FragPersonalHandleListener());
 
         return view;
     }

@@ -10,7 +10,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.main.ItemEditFragment1">
+        tools:context=".ui.main.DetailFragment">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -18,7 +18,7 @@
             android:orientation="vertical">
 
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/release_bar"
+                android:id="@+id/toolbar"
                 android:background="?attr/colorPrimary"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
@@ -31,11 +31,11 @@
                     android:src="@drawable/back"/>
 
                 <TextView
-                    android:id="@+id/release_title"
+                    android:id="@+id/bar_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="发布"
+                    android:text="详情页"
                     android:textColor="@color/white"
                     android:textSize="22sp" />
             </androidx.appcompat.widget.Toolbar>
@@ -56,9 +56,11 @@
                         android:id="@+id/post_title"
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
-                        android:hint="输入标题"
+                        android:layout_marginTop="10dp"
+                        android:text="输入标题"
                         android:textColor="@color/black"
-                        android:textSize="30sp" />
+                        android:textSize="30sp"
+                        android:editable="false"/>
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="300dp"
@@ -77,7 +79,7 @@
                                 android:layout_marginLeft="4dp"
                                 android:layout_marginTop="8dp"
                                 android:layout_marginBottom="8dp"
-                                android:text="添加关键词" />
+                                android:text="关键词" />
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -90,16 +92,6 @@
                                 android:layout_height="wrap_content" />
 
                             <TextView
-                                android:id="@+id/add_keyword"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="4dp"
-                                android:layout_marginTop="8dp"
-                                android:layout_marginBottom="8dp"
-                                android:gravity="center"
-                                android:text="+新建" />
-
-                            <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
                                 android:background="#BDBDBD" />
@@ -124,72 +116,7 @@
                                 android:layout_marginLeft="4dp"
                                 android:layout_marginTop="8dp"
                                 android:layout_marginBottom="8dp"
-                                android:text="添加特征信息" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:background="#BDBDBD" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:text="时间"
-                                android:textColor="@color/black"
-                                android:textSize="19sp" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginRight="10dp"
-                                android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/info_date"
-                                android:layout_width="0dp"
-                                android:layout_weight="3"
-                                android:layout_height="wrap_content"
-                                android:text="请选择日期" />
-
-                             <androidx.appcompat.widget.AppCompatSpinner
-                                 android:id="@+id/time_spinner"
-                                 android:layout_width="0dp"
-                                 android:layout_weight="2"
-                                 android:layout_height="wrap_content"
-                                 android:entries="@array/time"/>
-
-                            </LinearLayout>
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:background="@color/black"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginRight="10dp"/>
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:background="#BDBDBD"
-                                android:layout_marginTop="7dp"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:text="地点"
-                                android:textColor="@color/black"
-                                android:textSize="19sp" />
-
-                            <EditText
-                                android:id="@+id/info_location"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginRight="10dp"
-                                android:hint="请输入地点"/>
+                                android:text="特征信息" />
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -202,16 +129,6 @@
                                 android:layout_height="wrap_content" />
 
                             <TextView
-                                android:id="@+id/add_info"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="4dp"
-                                android:layout_marginTop="8dp"
-                                android:layout_marginBottom="8dp"
-                                android:gravity="center"
-                                android:text="+新建" />
-
-                            <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
                                 android:background="#BDBDBD" />
@@ -222,7 +139,7 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="30dp"
+                        android:layout_marginTop="20dp"
                         android:elevation="5dp">
 
                         <LinearLayout
@@ -244,33 +161,10 @@
                                 android:background="#BDBDBD" />
 
                             <EditText
-                                android:id="@+id/detail"
                                 android:layout_width="match_parent"
                                 android:layout_height="200dp"
                                 android:background="@null"
-                                android:gravity="top"
-                                android:hint="请输入详细描述" />
-
-                            <TextView
-                                android:id="@+id/word_count"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="15dp"
-                                android:text="0/140" />
-
-                            <ImageButton
-                                android:id="@+id/add_picture"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="15dp"
-                                android:src="@drawable/ic_baseline_add_24" />
-
-                            <TextView
-                                android:id="@+id/photo_count"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="15dp"
-                                android:text="0/9" />
+                                android:gravity="top" />
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -297,74 +191,94 @@
                                 android:layout_marginLeft="4dp"
                                 android:layout_marginTop="8dp"
                                 android:layout_marginBottom="8dp"
-                                android:text="添加通讯信息" />
+                                android:text="通讯信息" />
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
                                 android:background="#BDBDBD" />
 
-                            <TextView
+                            <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginRight="10dp"
-                                android:text="QQ"
-                                android:textColor="@color/black"
-                                android:textSize="19sp" />
+                                android:orientation="horizontal">
 
-                            <EditText
-                                android:id="@+id/contact_qq"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginRight="10dp"
-                                android:hint="请输入"
-                                android:textSize="19sp" />
+                                <TextView
+                                    android:layout_width="80dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:text="QQ"
+                                    android:textColor="@color/black"
+                                    android:textSize="18sp" />
 
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:background="#BDBDBD" />
+                                <TextView
+                                    android:id="@+id/qq"
+                                    android:layout_width="125dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:text="809204291"/>
 
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginRight="10dp"
-                                android:text="手机号码"
-                                android:textColor="@color/black"
-                                android:textSize="19sp" />
-
-                            <EditText
-                                android:id="@+id/contact_phone"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginRight="10dp"
-                                android:hint="请输入"
-                                android:textSize="19sp" />
+                                <ImageView
+                                    android:id="@+id/copy_qq"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:src="@drawable/copy"/>
+                            </LinearLayout>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
                                 android:background="#BDBDBD" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="80dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:text="手机号码"
+                                    android:textColor="@color/black"
+                                    android:textSize="18sp" />
+
+                                <TextView
+                                    android:id="@+id/phone"
+                                    android:layout_width="125dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:text="12345678900"/>
+
+                                <ImageView
+                                    android:id="@+id/copy_phone"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:src="@drawable/copy"/>
+                            </LinearLayout>
 
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
 
-                    <Button
-                        android:id="@+id/btn_release"
-                        android:layout_width="300dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:background="@drawable/rec_bg_4"
-                        android:text="发布"
-                        android:textColor="@color/white"
-                        android:textSize="28sp"/>
-
                 </LinearLayout>
             </ScrollView>
         </LinearLayout>
+
     </FrameLayout>
 </layout>

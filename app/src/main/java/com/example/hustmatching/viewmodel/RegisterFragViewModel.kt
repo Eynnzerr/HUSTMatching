@@ -27,7 +27,7 @@ class RegisterFragViewModel(application: Application) : AndroidViewModel(applica
         viewModelScope.launch {
             try {
                 val response = Repository.getAuth(studentID)
-                if (response.code != 200)
+                if (response.code != 0)
                     checkCode(response)
             } catch (e: Exception) {
                 catch(e)
@@ -39,7 +39,10 @@ class RegisterFragViewModel(application: Application) : AndroidViewModel(applica
         viewModelScope.launch {
             try {
                 val response = Repository.verify(studentID, auth)
+                Log.d("verify","response.code:" + response.code)
+                Log.d("verify","response.msg:" + response.msg)
                 if (response.code == 200) {
+                    Log.d("verify:","post true")
                     verified.postValue(true)
                 } else
                     checkCode(response)

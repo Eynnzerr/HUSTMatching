@@ -1,5 +1,6 @@
 package com.example.hustmatching.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -20,6 +21,7 @@ class LoginFragViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val response = Repository.loginByPassword(studentID, password)
+                Log.d("login","response.code:" + response.code)
                 if (response.code == 200) {
                     Repository.token = response.data.token
                     saveInfo(studentID, password)
