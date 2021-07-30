@@ -47,7 +47,7 @@
                 android:layout_below="@id/login_line"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="50dp"
-                app:barText="@={viewModel.account}"/>
+                app:barText="@={viewModel.studentID}"/>
 
             <com.example.hustmatching.view.PasswordEditText
                 android:id="@+id/login_password_bar"

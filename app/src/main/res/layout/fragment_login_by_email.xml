@@ -47,7 +47,7 @@
                 android:layout_below="@id/login_line"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="50dp"
-                app:barText="@={viewModel.email}"/>
+                app:barText="@={viewModel.studentID}"/>
 
             <com.example.hustmatching.view.AuthenticationEditText
                 android:id="@+id/authens_bar"
@@ -56,7 +56,7 @@
                 android:layout_below="@id/email_bar"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="18dp"
-                app:barText="@={viewModel.authen}"/>
+                app:barText="@={viewModel.auth}"/>
 
             <Button
                 android:id="@+id/btn_login"
