@@ -110,20 +110,32 @@ public class ItemEditFragment1 extends Fragment {
                 netPost.setTime(viewModel.getDate() + " " + binding.timeSpinner.getSelectedItem().toString());//从viewmodel和ui组合获取
 
                 Log.d(TAG, "Tags: " + activityViewModel.getTags());
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        viewModel.addPostToDatabase(netPost, getContext());//保存副本至本地数据库
-                    }
-                }).start();
+
 
                 Map<String,String> fieldMap = getFieldMap(netPost);
-                //TODO 调用接口发送请求
 
-                activityViewModel.resetTags();//发起一次请求后要清空tags
-                Navigation.findNavController(v).navigate(R.id.action_itemEditFragment1_to_myReleaseFragment);
+                viewModel.sendPosts(fieldMap);
+
+                viewModel.getSended().observe(getViewLifecycleOwner(),sended -> {
+                    if (sended){
+                        viewModel.getSended().postValue(false);
+
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                viewModel.addPostToDatabase(netPost, getContext());//保存副本至本地数据库
+                            }
+                        }).start();
+
+                        activityViewModel.resetTags();//发起一次请求后要清空tags
+                        Navigation.findNavController(v).navigate(R.id.action_itemEditFragment1_to_myReleaseFragment);
+                    }
+                });
+
             }
         });
+
+
 
         return view;
     }
@@ -166,7 +178,7 @@ public class ItemEditFragment1 extends Fragment {
     //将NetPost对象实例转换成POST请求需要的fieldMap
     private Map<String, String> getFieldMap(NetPost netPost) {
         Map<String, String> map = new HashMap<>();
-        map.put("studentID", NetPostUtil.INSTANCE.getID(getActivity()));
+        map.put("studentID", "U201917277");
         map.put("title",netPost.getTitle());
         map.put("classification", netPost.getClassification());
         map.put("tags", GsonInstance.getInstance().getGson().toJson(netPost.getTags()));

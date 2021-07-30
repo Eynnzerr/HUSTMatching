@@ -4,10 +4,8 @@ import com.example.hustmatching.response.DataResponse
 import com.example.hustmatching.response.LoginData
 import com.example.hustmatching.response.Response
 import retrofit2.Call
-import retrofit2.http.Field
-import retrofit2.http.FieldMap
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import retrofit2.http.*
+
 
 interface UserService {
     @FormUrlEncoded
@@ -32,6 +30,9 @@ interface UserService {
 
     @FormUrlEncoded
     @POST(Api.SEND_POST)
-    fun sendNetPost(@FieldMap() map: Map<String,String>): Call<Response>
+    fun sendNetPost(@FieldMap() map: Map<String,String>, @Header("Authorization") token:String): Call<Response>
 
+
+    @POST(Api.TEST_URL)
+    fun test( @Header("Authorization") token:String): Call<Response>
 }

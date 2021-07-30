@@ -55,7 +55,8 @@
         tools:layout="@layout/fragment_item_edit1" >
         <action
             android:id="@+id/action_itemEditFragment1_to_myReleaseFragment"
-            app:destination="@id/myReleaseFragment" />
+            app:destination="@id/myReleaseFragment"
+            app:popUpTo="@id/releaseFragment"/>
     </fragment>
     <fragment
         android:id="@+id/searchPeopleFragment"

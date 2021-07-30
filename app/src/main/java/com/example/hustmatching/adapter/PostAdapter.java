@@ -1,5 +1,6 @@
 package com.example.hustmatching.adapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
 
     public PostAdapter(List<NetPost> posts) {
         this.posts = posts;
+        Log.d("adapter", "create");
     }
 
     @NonNull

@@ -14,29 +14,38 @@ object Network {
     suspend fun loginByPassword(studentID: String, password: String) = userService.loginByPassword(studentID, password).await()
     suspend fun loginByEmail(studentID: String, auth: String) = userService.loginByEmail(studentID, auth).await()
 
-    suspend fun getAuth(studentID:String) = userService.getAuth(studentID).await()
+    suspend fun getAuth(studentID: String) = userService.getAuth(studentID).await()
 
-    suspend fun verify(studentID: String,auth:String) = userService.verify(studentID ,auth).await()
+    suspend fun verify(studentID: String, auth: String) = userService.verify(studentID, auth).await()
 
-    suspend fun register(studentID: String,username: String,password: String) = userService.register(studentID,username,password).await()
+    suspend fun register(studentID: String, username: String, password: String) = userService.register(studentID, username, password).await()
+
+    suspend fun sendPosts(map: Map<String, String>, token: String) = userService.sendNetPost(map, token).await()
+
+    suspend fun test(token: String) = a(token).await()
 
     private suspend fun <T> Call<T>.await(): T {
         return suspendCoroutine { continuation ->
             enqueue(object : Callback<T> {
                 override fun onResponse(call: Call<T>, response: Response<T>) {
-                    Log.d("response","onResponse")
+                    Log.d("response", "onResponse")
                     val body = response.body()
-                    Log.d("response","${response}")
-                    Log.d("response","${body}")
+                    Log.d("response", "${response}")
+                    Log.d("response", "${body}")
                     if (body != null) continuation.resume(body)
                     else continuation.resumeWithException(RuntimeException("response body is null"))
                 }
 
                 override fun onFailure(call: Call<T>, t: Throwable) {
-                    Log.d("response","onFailure")
+                    Log.d("response", "onFailure")
                     continuation.resumeWithException(t)
                 }
             })
         }
+    }
+
+    fun a(token: String):Call<com.example.hustmatching.response.Response>{
+        val a = userService.test(token)
+        return a
     }
 }

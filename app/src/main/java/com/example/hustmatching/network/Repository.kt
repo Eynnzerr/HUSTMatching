@@ -34,4 +34,12 @@ object Repository {
     suspend fun register(studentID: String,username: String,password: String) = withContext(defaultDispatcher){
         Network.register(studentID, username, password)
     }
+
+    suspend fun sendPosts(map: Map<String, String>) = withContext(defaultDispatcher){
+        Network.sendPosts(map, "Bearer $token")
+    }
+
+    suspend fun test() = withContext(defaultDispatcher){
+        Network.test( "Bearer $token")
+    }
 }
