@@ -14,6 +14,7 @@ import android.util.Log;
 import com.example.hustmatching.R;
 import com.example.hustmatching.adapter.EditAdapter;
 import com.example.hustmatching.databinding.ActivityMainBinding;
+import com.example.hustmatching.network.Repository;
 import com.example.hustmatching.viewmodel.MainActivityViewModel;
 
 public class MainActivity extends AppCompatActivity implements EditAdapter.SaveEditListener {
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements EditAdapter.SaveE
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(binding.bottomNavigation.getMenu()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.bottomNavigation, navController);
+        Log.d("token",Repository.INSTANCE.getToken());
     }
 
 
