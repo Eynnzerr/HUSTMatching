@@ -11,7 +11,7 @@ import retrofit2.http.POST
 interface UserService {
     @FormUrlEncoded
     @POST(Api.LOGIN_PWD_URL)
-    fun loginByPassword(@Field("username") studentID: String, @Field("password") password:String): Call<DataResponse<LoginData>>
+    fun loginByPassword(@Field("studentID") studentID: String, @Field("password") password:String): Call<DataResponse<LoginData>>
 
     @FormUrlEncoded
     @POST(Api.LOGIN_EMAIL_URL)

@@ -1,3 +1,3 @@
 package com.example.hustmatching.bean
 
-data class Info (val username:String,val password:String)
+data class Info (val studentID:String,val password:String)

@@ -30,18 +30,18 @@ fun ViewModel.relogin(){
 }
 
 fun ViewModel.getInfo() : Info{
-    var username=""
+    var studentID=""
     var password=""
     SecurityUtil.getEncryptedSharedPreferences(BaseApplication.getContext()).apply {
-        username = getString("username","")!!
+        studentID = getString("studentID","")!!
         password = getString("password","")!!
     }
-    return Info(username, password)
+    return Info(studentID, password)
 }
 
-fun ViewModel.saveInfo(username:String, password:String){
+fun ViewModel.saveInfo(studentID:String, password:String){
     SecurityUtil.getEncryptedSharedPreferences(BaseApplication.getContext()).edit {
-        putString("username",username)
+        putString("studentID",studentID)
         putString("password",password)
     }
 }

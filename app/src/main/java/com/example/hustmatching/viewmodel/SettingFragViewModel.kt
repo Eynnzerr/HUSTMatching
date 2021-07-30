@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.hustmatching.network.Repository
 import com.example.hustmatching.utils.catch
 import com.example.hustmatching.utils.checkCode
+import com.example.hustmatching.utils.saveInfo
 import kotlinx.coroutines.launch
 
 class SettingFragViewModel:ViewModel() {
@@ -13,6 +14,7 @@ class SettingFragViewModel:ViewModel() {
     val username = MutableLiveData<String>()
     val password = MutableLiveData<String>()
     val registered = MutableLiveData<Boolean>()
+    val logined = MutableLiveData<Boolean>()
 
     fun register(studentID: String,username: String,password: String){
         viewModelScope.launch {
@@ -28,4 +30,22 @@ class SettingFragViewModel:ViewModel() {
             }
         }
     }
+
+    fun login(studentID: String, password: String) {
+        viewModelScope.launch {
+            try {
+                val response = Repository.loginByPassword(studentID, password)
+                if (response.code == 200) {
+                    Repository.token = response.data.token
+                    saveInfo(studentID, password)
+                    logined.postValue(true)
+                } else {
+                    checkCode(response)
+                }
+            } catch (e: Exception) {
+                catch(e)
+            }
+        }
+    }
+
 }

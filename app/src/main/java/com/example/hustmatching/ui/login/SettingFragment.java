@@ -1,5 +1,6 @@
 package com.example.hustmatching.ui.login;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.databinding.DataBindingUtil;
@@ -14,7 +15,7 @@ import android.view.ViewGroup;
 
 import com.example.hustmatching.R;
 import com.example.hustmatching.databinding.FragmentSettingBinding;
-import com.example.hustmatching.viewmodel.RegisterFragViewModel;
+import com.example.hustmatching.ui.main.MainActivity;
 import com.example.hustmatching.viewmodel.SettingFragViewModel;
 
 public class SettingFragment extends Fragment {
@@ -31,9 +32,10 @@ public class SettingFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_setting, container, false);
-        view = binding.getRoot();
         viewModel = new ViewModelProvider(this).get(SettingFragViewModel.class);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_setting, container, false);
+        binding.setViewModel(viewModel);
+        view = binding.getRoot();
 
         binding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,8 +45,19 @@ public class SettingFragment extends Fragment {
         });
 
         viewModel.getRegistered().observe(getViewLifecycleOwner(), registered -> {
-            viewModel.getRegistered().postValue(false);
-            // TODO: 注册后跳转
+            if (registered){
+                viewModel.getRegistered().postValue(false);
+                viewModel.login(getStudentID(),viewModel.getPassword().getValue());
+            }
+        });
+
+        viewModel.getLogined().observe(getViewLifecycleOwner(), logined-> {
+            if (logined){
+                viewModel.getLogined().postValue(false);
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                getActivity().startActivity(intent);
+            }
         });
 
         return view;

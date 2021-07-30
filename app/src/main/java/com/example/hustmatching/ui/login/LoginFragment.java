@@ -44,10 +44,15 @@ public class LoginFragment extends Fragment {
         binding.setViewModel(viewModel);
 
         viewModel.getChecked().observe(getViewLifecycleOwner(),checked->{
-            viewModel.getChecked().postValue(false);
-            Intent intent = new Intent(getActivity(), MainActivity.class);
-            getActivity().startActivity(intent);
+            if (checked) {
+                viewModel.getChecked().postValue(false);
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                getActivity().startActivity(intent);
+            }
         });
+
+        viewModel.tryLogin();
 
         return view;
     }
