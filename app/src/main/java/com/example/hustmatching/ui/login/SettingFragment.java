@@ -1,6 +1,8 @@
 package com.example.hustmatching.ui.login;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.databinding.DataBindingUtil;
@@ -41,6 +43,10 @@ public class SettingFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 viewModel.register(getStudentID(),viewModel.getUsername().getValue(),viewModel.getPassword().getValue());
+
+                SharedPreferences.Editor editor = getActivity().getSharedPreferences("ui.main.MainActivity", Context.MODE_PRIVATE).edit();
+                editor.putString("name",viewModel.getUsername().getValue());
+                editor.apply();
             }
         });
 

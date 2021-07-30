@@ -32,7 +32,7 @@ public class FragSearchItemListener {
             case R.id.items2:
                 //生活页面
                 String[] titles2 = new String[]{"物品名称","特征描述","特别信息"};
-                String[] keys2 = new String[]{};
+                String[] keys2 = new String[]{"学生证","校园卡","身份证","钥匙"};
                 activityViewModel.setTitles(titles2);
                 activityViewModel.setKeys(keys2);
                 activityViewModel.setClassification(NetPostUtil.SEARCH_ITEM);
@@ -41,7 +41,7 @@ public class FragSearchItemListener {
             case R.id.items3:
                 //学习页面
                 String[] titles3 = new String[]{"物品名称","品牌","特点信息"};
-                String[] keys3 = new String[]{};
+                String[] keys3 = new String[]{"课本","笔记","笔","计算器"};
                 activityViewModel.setTitles(titles3);
                 activityViewModel.setKeys(keys3);
                 activityViewModel.setClassification(NetPostUtil.SEARCH_ITEM);
@@ -59,7 +59,7 @@ public class FragSearchItemListener {
             case R.id.people1:
                 //寻失主页面
                 String[] titles7 = new String[]{"物品名称","品牌","外形特点"};
-                String[] keys7 = new String[]{};
+                String[] keys7 = new String[]{"耳机","校园卡","课本","水杯"};
                 activityViewModel.setTitles(titles7);
                 activityViewModel.setKeys(keys7);
                 activityViewModel.setClassification(NetPostUtil.SEARCH_LOST_PERSON);
@@ -68,7 +68,7 @@ public class FragSearchItemListener {
             case R.id.people2:
                 //寻友页面
                 String[] titles5 = new String[]{"寻友目的","性别要求","其它要求"};
-                String[] keys5 = new String[]{};
+                String[] keys5 = new String[]{"学习","租房","拼车","其他"};
                 activityViewModel.setTitles(titles5);
                 activityViewModel.setKeys(keys5);
                 activityViewModel.setClassification(NetPostUtil.SEARCH_OTHERS);

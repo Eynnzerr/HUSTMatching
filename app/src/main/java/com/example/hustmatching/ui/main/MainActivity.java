@@ -10,6 +10,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.hustmatching.R;
 import com.example.hustmatching.adapter.EditAdapter;
@@ -32,6 +33,8 @@ public class MainActivity extends AppCompatActivity implements EditAdapter.SaveE
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(binding.bottomNavigation.getMenu()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.bottomNavigation, navController);
+
+        Toast.makeText(this,"登录成功",Toast.LENGTH_LONG).show();
     }
 
 

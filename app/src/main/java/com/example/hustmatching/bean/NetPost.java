@@ -1,31 +1,57 @@
 package com.example.hustmatching.bean;
 
 import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
 
+import com.example.hustmatching.room.TagConverter;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+@Entity
+@TypeConverters(TagConverter.class)
 public class NetPost {
 
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+    @ColumnInfo(name = "title")
     @SerializedName("title")
     private String title;
+    @ColumnInfo(name = "classification")
     @SerializedName("classification")
     private String classification;
+    @ColumnInfo(name = "tags")
     @SerializedName("tags")
     private List<String> tags;
+    @ColumnInfo(name = "detail")
     @SerializedName("detail")
     private String detail;
+    @ColumnInfo(name = "qq")
     @SerializedName("qq")
     private String qq;
+    @ColumnInfo(name = "phone")
     @SerializedName("phone")
     private String phone;
+    @ColumnInfo(name = "date")
     @SerializedName("date")
     private String date;//文章发布的日期：yyyy-MM-dd
+    @ColumnInfo(name = "time")
     @SerializedName("time")
     private String time;//在编辑栏填写的日期：yyyy-MM-dd 下午
+    @ColumnInfo(name = "location")
     @SerializedName("location")
     private String location;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;
