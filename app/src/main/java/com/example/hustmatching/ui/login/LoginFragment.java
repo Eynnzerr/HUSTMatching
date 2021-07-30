@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,9 +45,13 @@ public class LoginFragment extends Fragment {
         binding.setViewModel(viewModel);
 
         viewModel.getChecked().observe(getViewLifecycleOwner(),checked->{
-            viewModel.getChecked().postValue(false);
-            Intent intent = new Intent(getActivity(), MainActivity.class);
-            getActivity().startActivity(intent);
+            if(checked) {
+                Log.d("observe","checked:" + checked);
+                viewModel.getChecked().postValue(false);
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
+                getActivity().finish();//销毁登录界面
+            }
         });
 
         return view;

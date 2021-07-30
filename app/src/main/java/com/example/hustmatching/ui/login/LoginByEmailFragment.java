@@ -31,7 +31,6 @@ public class LoginByEmailFragment extends Fragment {
     private EmailRegisterFragViewModel viewModel;
     private CountDownTimer mCountDownTimer;
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,9 +81,12 @@ public class LoginByEmailFragment extends Fragment {
         });
 
         viewModel.getChecked().observe(getViewLifecycleOwner(), checked -> {
-            viewModel.getChecked().postValue(false);
-            Intent intent = new Intent(getActivity(), MainActivity.class);
-            getActivity().startActivity(intent);
+            if(checked) {
+                viewModel.getChecked().postValue(false);
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                getActivity().startActivity(intent);
+                getActivity().finish();
+            }
         });
 
         return view;
