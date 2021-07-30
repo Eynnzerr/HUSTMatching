@@ -24,13 +24,17 @@ import com.example.hustmatching.adapter.EditAdapter;
 import com.example.hustmatching.bean.NetPost;
 import com.example.hustmatching.databinding.FragmentItemEdit1Binding;
 import com.example.hustmatching.network.Api;
+import com.example.hustmatching.room.GsonInstance;
 import com.example.hustmatching.utils.AlertDialogUtil;
+import com.example.hustmatching.utils.NetPostUtil;
 import com.example.hustmatching.viewmodel.ItemEditFrag1ViewModel;
 import com.example.hustmatching.viewmodel.MainActivityViewModel;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -113,6 +117,9 @@ public class ItemEditFragment1 extends Fragment {
                     }
                 }).start();
 
+                Map<String,String> fieldMap = getFieldMap(netPost);
+                //TODO 调用接口发送请求
+
                 activityViewModel.resetTags();//发起一次请求后要清空tags
                 Navigation.findNavController(v).navigate(R.id.action_itemEditFragment1_to_myReleaseFragment);
             }
@@ -154,5 +161,21 @@ public class ItemEditFragment1 extends Fragment {
                 }
             }
         });
+    }
+
+    //将NetPost对象实例转换成POST请求需要的fieldMap
+    private Map<String, String> getFieldMap(NetPost netPost) {
+        Map<String, String> map = new HashMap<>();
+        map.put("studentID", NetPostUtil.INSTANCE.getID(getActivity()));
+        map.put("title",netPost.getTitle());
+        map.put("classification", netPost.getClassification());
+        map.put("tags", GsonInstance.getInstance().getGson().toJson(netPost.getTags()));
+        map.put("detail", netPost.getDetail());
+        map.put("time",netPost.getTime());
+        map.put("location", netPost.getLocation());
+        map.put("qq", netPost.getQq());
+        map.put("phone", netPost.getPhone());
+        map.put("date", netPost.getDate());
+        return map;
     }
 }
