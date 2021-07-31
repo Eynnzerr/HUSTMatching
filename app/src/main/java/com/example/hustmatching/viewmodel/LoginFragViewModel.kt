@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.hustmatching.bean.NetPost
 import com.example.hustmatching.network.Repository
 import com.example.hustmatching.utils.catch
 import com.example.hustmatching.utils.checkCode

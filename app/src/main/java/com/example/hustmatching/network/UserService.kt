@@ -38,6 +38,8 @@ interface UserService {
     @POST(Api.MATCH_URL)
     fun match(@Field("mid") id:Int, @Header("Authorization") token:String): Call<DataResponse<PostResponese>>
 
+    @GET(Api.GET_POSTS_URL)
+    fun getPosts(@Header("Authorization") token:String): Call<DataResponse<List<PostResponese>>>
 
     @POST(Api.TEST_URL)
     fun test( @Header("Authorization") token:String): Call<Response>

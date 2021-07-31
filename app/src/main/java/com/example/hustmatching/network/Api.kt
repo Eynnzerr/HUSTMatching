@@ -10,5 +10,6 @@ object Api {
     const val SEARCH_ITEM_URL:String = "api/seek/object"//发送一篇发布
     const val SEARCH_PERSON_URL:String ="/api/seek/person"
     const val MATCH_URL:String ="/api/seek/match"
+    const val GET_POSTS_URL:String = "/api/seek/posts"
     const val TEST_URL :String = "/test/token"
 }

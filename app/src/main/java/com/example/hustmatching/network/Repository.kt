@@ -47,6 +47,10 @@ object Repository {
         Network.match(id,"Bearer $token")
     }
 
+    suspend fun getPosts() = withContext(defaultDispatcher){
+        Network.getPosts("Bearer $token")
+    }
+
     suspend fun test() = withContext(defaultDispatcher){
         Network.test( "Bearer $token")
     }
