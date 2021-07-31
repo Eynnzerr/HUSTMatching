@@ -34,7 +34,7 @@ object Network {
                 override fun onResponse(call: Call<T>, response: Response<T>) {
                     Log.d("response", "onResponse")
                     val body = response.body()
-                    Log.d("response", "${response}")
+                    Log.d("response", "msg : ${response.message()}")
                     Log.d("response", "${body}")
                     if (body != null) continuation.resume(body)
                     else continuation.resumeWithException(RuntimeException("response body is null"))

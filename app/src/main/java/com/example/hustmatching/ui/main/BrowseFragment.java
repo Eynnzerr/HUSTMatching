@@ -7,6 +7,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -35,6 +36,8 @@ public class BrowseFragment extends Fragment {
     private View view;
     private BrowseFragViewModel viewModel;
     private MatchedPostsAdapter adapter;
+    private List<NetPost> myPosts;
+    private int index;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -74,6 +77,20 @@ public class BrowseFragment extends Fragment {
         //TODO 进入页面即请求接口，针对当前用户对其所有提交逐个进行匹配，将结果显示在recyclerview上
         //首先从本地数据库取数据，如果不为空，则逐条根据mid发起请求得到匹配的发布，将原发布和匹配的发布整合成两个元素的数组添加至netPosts
         //最终以netPosts为数据源，显示recyclerview。
+
+        myPosts = viewModel.getPosts().getValue();//取到本地的我的发布
+        for (NetPost myPost : myPosts) {
+            viewModel.findMatch(myPost.getMid());
+        }
+        viewModel.getMatchOne().observe(getViewLifecycleOwner(), new Observer<NetPost>() {
+            @Override
+            public void onChanged(NetPost netPost) {
+                //完成匹配
+                NetPost[] matchPair = new NetPost[2];
+                matchPair[0] = myPosts.get(index);
+                index ++;
+            }
+        });
 
 
         return view;

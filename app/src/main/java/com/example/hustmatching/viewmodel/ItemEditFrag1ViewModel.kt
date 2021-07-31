@@ -17,6 +17,7 @@ class ItemEditFrag1ViewModel : ViewModel() {
     val keywords: ArrayList<String>
     val info: ArrayList<String>
     val sended=MutableLiveData<Boolean>()
+    val mid = MutableLiveData<Int>()
 
     //在DatePicker中选择的日期 格式：yyyy-MM-dd
     var date : String
@@ -52,9 +53,32 @@ class ItemEditFrag1ViewModel : ViewModel() {
             try {
                 val response = Repository.sendPostsItem(map)
                 if (response.code == 200){
+                    mid.postValue(response.data.mid)
                     sended.postValue(true)
+                    Log.d("sendPosts","请求成功， mid = " + response.data.mid)
                 } else{
                     checkCode(response)
+                    Log.d("sendPosts","请求失败")
+                }
+            } catch (e: Exception) {
+                catch(e)
+            }
+        }
+    }
+
+    fun sendPostsPerson(map: Map<String,String>){
+        Log.d("map","$map")
+        viewModelScope.launch {
+            try {
+                val response = Repository.sendPostsPerson(map)
+                Log.d("sendPosts","msg = " + response.msg)
+                Log.d("sendPosts","code = " + response.code)
+                if (response.code == 200){
+                    sended.postValue(true)
+                    Log.d("sendPosts","请求成功， mid = " + response.data.mid)
+                } else{
+                    checkCode(response)
+                    Log.d("sendPosts","请求失败")
                 }
             } catch (e: Exception) {
                 catch(e)

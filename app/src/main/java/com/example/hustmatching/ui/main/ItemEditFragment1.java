@@ -9,6 +9,7 @@ import android.os.Bundle;
 import androidx.annotation.RequiresApi;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -127,6 +128,7 @@ public class ItemEditFragment1 extends Fragment {
             @Override
             public void onClick(View v) {
                 //TODO 打包当前页面数据并发起网络请求，提交给后端服务器。发布成功跳转至“我的发布页面”
+                Log.d(TAG, "RecyclerView长度: " + keyAdapter.getItemCount());
                 NetPost netPost = new NetPost();
                 netPost.setTitle(binding.postTitle.getText().toString());//从ui获取
                 MainActivityViewModel activityViewModel = new ViewModelProvider(getActivity()).get(MainActivityViewModel.class);
@@ -137,26 +139,30 @@ public class ItemEditFragment1 extends Fragment {
                 netPost.setQq(binding.contactQq.getText().toString());//从ui获取
                 netPost.setPhone(binding.contactPhone.getText().toString());//从ui获取
                 netPost.setLocation(binding.infoLocation.getText().toString());//从ui获取
-                netPost.setTime(viewModel.getDate() + " " + spinnerPosition);//从viewmodel和ui组合获取
+                netPost.setTime(viewModel.getDate() + "-" + binding.timeSpinner.getSelectedItem().toString());//从viewmodel和ui组合获取
 
                 Log.d(TAG, "Tags: " + activityViewModel.getTags());
 
-
+                //根据不同情况发送相应请求
                 Map<String,String> fieldMap = getFieldMap(netPost);
+                if(netPost.getClassification() == "#寻失物")
+                    viewModel.sendPosts(fieldMap);//发送请求
+                else
+                    viewModel.sendPostsPerson(fieldMap);
 
-                viewModel.sendPosts(fieldMap);
+                viewModel.getMid().observe(getViewLifecycleOwner(), new Observer<Integer>() {
+                    @Override
+                    public void onChanged(Integer integer) {
+                        if(netPost != null && integer != 0) {
+                            netPost.setMid(integer);
+                            viewModel.addPostToDatabase(netPost, getContext());//得到取回的mid再存入数据库
+                        }
+                    }
+                });
 
                 viewModel.getSended().observe(getViewLifecycleOwner(),sended -> {
                     if (sended){
                         viewModel.getSended().postValue(false);
-
-                        new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                viewModel.addPostToDatabase(netPost, getContext());//保存副本至本地数据库
-                            }
-                        }).start();
-
                         activityViewModel.resetTags();//发起一次请求后要清空tags
                         Navigation.findNavController(v).navigate(R.id.action_itemEditFragment1_to_myReleaseFragment);
                     }
@@ -165,8 +171,6 @@ public class ItemEditFragment1 extends Fragment {
 
             }
         });
-
-
 
         return view;
     }
@@ -211,12 +215,16 @@ public class ItemEditFragment1 extends Fragment {
     //将NetPost对象实例转换成POST请求需要的fieldMap
     private Map<String, String> getFieldMap(NetPost netPost) {
         Map<String, String> map = new HashMap<>();
-        map.put("studentID", "U201917277");
+        //map.put("studentID", "U201917277");
         map.put("title",netPost.getTitle());
         map.put("classification", netPost.getClassification());
-        map.put("tags", GsonInstance.getInstance().getGson().toJson(netPost.getTags()));
+        //map.put("tags", GsonInstance.getInstance().getGson().toJson(netPost.getTags()));
+        map.put("tag1",netPost.getTags().get(0));
+        map.put("tag2",netPost.getTags().get(1));
+        map.put("tag3",netPost.getTags().get(2));
         map.put("detail", netPost.getDetail());
-        map.put("time",netPost.getTime());
+        int index = netPost.getTime().lastIndexOf("-");
+        map.put("time",netPost.getTime().substring(0, index+1) + spinnerPosition);
         map.put("location", netPost.getLocation());
         map.put("qq", netPost.getQq());
         map.put("phone", netPost.getPhone());
