@@ -161,7 +161,7 @@ public class ItemEditFragment1 extends Fragment {
                         Navigation.findNavController(v).navigate(R.id.action_itemEditFragment1_to_myReleaseFragment);
                     }
                 });
-        });
+
 
             }
         });

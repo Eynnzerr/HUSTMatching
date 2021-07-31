@@ -12,7 +12,5 @@ import retrofit2.http.POST;
 
 public interface Test {
 
-    @FormUrlEncoded
-    @POST(Api.SEND_POST)
-    Call<Response> sendNetPost(@FieldMap() Map<String,String> map);
+
 }
