@@ -1,8 +1,6 @@
 package com.example.hustmatching.network
 
-import com.example.hustmatching.response.DataResponse
-import com.example.hustmatching.response.LoginData
-import com.example.hustmatching.response.Response
+import com.example.hustmatching.response.*
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -29,8 +27,16 @@ interface UserService {
     fun verify(@Field("studentID") studentID:String, @Field("auth") auth:String): Call<Response>
 
     @FormUrlEncoded
-    @POST(Api.SEND_POST)
-    fun sendNetPost(@FieldMap() map: Map<String,String>, @Header("Authorization") token:String): Call<Response>
+    @POST(Api.SEARCH_ITEM_URL)
+    fun sendPostsItem(@FieldMap() map: Map<String,String>, @Header("Authorization") token:String): Call<DataResponse<IdResponse>>
+
+    @FormUrlEncoded
+    @POST(Api.SEARCH_PERSON_URL)
+    fun sendPostsPerson(@FieldMap() map: Map<String,String>, @Header("Authorization") token:String): Call<DataResponse<IdResponse>>
+
+    @FormUrlEncoded
+    @POST(Api.MATCH_URL)
+    fun match(@Field("mid") id:Int, @Header("Authorization") token:String): Call<DataResponse<PostResponese>>
 
 
     @POST(Api.TEST_URL)

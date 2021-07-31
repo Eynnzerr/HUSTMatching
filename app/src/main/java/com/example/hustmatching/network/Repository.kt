@@ -35,8 +35,16 @@ object Repository {
         Network.register(studentID, username, password)
     }
 
-    suspend fun sendPosts(map: Map<String, String>) = withContext(defaultDispatcher){
-        Network.sendPosts(map, "Bearer $token")
+    suspend fun sendPostsItem(map: Map<String, String>) = withContext(defaultDispatcher){
+        Network.sendPostsItem(map,"Bearer $token")
+    }
+
+    suspend fun sendPostsPerson(map: Map<String, String>) = withContext(defaultDispatcher){
+        Network.sendPostsPerson(map,"Bearer $token")
+    }
+
+    suspend fun match(id:Int) = withContext(defaultDispatcher){
+        Network.match(id,"Bearer $token")
     }
 
     suspend fun test() = withContext(defaultDispatcher){

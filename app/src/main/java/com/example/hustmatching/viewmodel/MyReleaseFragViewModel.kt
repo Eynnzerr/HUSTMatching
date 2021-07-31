@@ -33,7 +33,11 @@ class MyReleaseFragViewModel(application: Application) : AndroidViewModel(applic
     fun loadPosts() {
         Log.d("adapter", "post value before")
         thread {
-            posts.postValue(postDao.allPosts)
+            val list= postDao.allPosts
+            posts.postValue(list)
+            for (each in list){
+                Log.d("list","${each.tags}")
+            }
             Log.d("adapter", "post value")
 
         }

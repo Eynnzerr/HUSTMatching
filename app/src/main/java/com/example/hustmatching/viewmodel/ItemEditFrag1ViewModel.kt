@@ -46,7 +46,7 @@ class ItemEditFrag1ViewModel : ViewModel() {
         Log.d("map","$map")
         viewModelScope.launch {
             try {
-                val response = Repository.sendPosts(map)
+                val response = Repository.sendPostsItem(map)
                 if (response.code == 200){
                     sended.postValue(true)
                 } else{

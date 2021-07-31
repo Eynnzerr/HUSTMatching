@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.example.hustmatching.R;
 import com.example.hustmatching.adapter.EditAdapter;
 import com.example.hustmatching.databinding.ActivityMainBinding;
+import com.example.hustmatching.network.Repository;
 import com.example.hustmatching.viewmodel.MainActivityViewModel;
 
 public class MainActivity extends AppCompatActivity implements EditAdapter.SaveEditListener {
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements EditAdapter.SaveE
         NavigationUI.setupWithNavController(binding.bottomNavigation, navController);
 
         Toast.makeText(this,"登录成功",Toast.LENGTH_LONG).show();
+        Log.d("token", Repository.INSTANCE.getToken());
     }
 
 

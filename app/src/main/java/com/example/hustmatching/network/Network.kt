@@ -20,7 +20,11 @@ object Network {
 
     suspend fun register(studentID: String, username: String, password: String) = userService.register(studentID, username, password).await()
 
-    suspend fun sendPosts(map: Map<String, String>, token: String) = userService.sendNetPost(map, token).await()
+    suspend fun sendPostsItem(map: Map<String, String>, token: String) = userService.sendPostsItem(map, token).await()
+
+    suspend fun sendPostsPerson(map: Map<String, String>, token: String) = userService.sendPostsPerson(map, token).await()
+
+    suspend fun match(id:Int, token: String) = userService.match(id, token).await()
 
     suspend fun test(token: String) = a(token).await()
 
