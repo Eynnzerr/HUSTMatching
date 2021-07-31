@@ -43,11 +43,19 @@
                     android:layout_marginRight="10dp"/>
             </androidx.appcompat.widget.Toolbar>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/post_rv"
+
+
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/swipeRefresh"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/browse_bar" />
+                android:layout_below="@id/browse_bar">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/post_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
         </RelativeLayout>
 
