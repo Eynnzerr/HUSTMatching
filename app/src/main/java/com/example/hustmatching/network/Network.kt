@@ -26,6 +26,8 @@ object Network {
 
     suspend fun match(id:Int, token: String) = userService.match(id, token).await()
 
+    suspend fun getPosts(token: String) = userService.getPosts(token).await()
+
     suspend fun test(token: String) = a(token).await()
 
     private suspend fun <T> Call<T>.await(): T {

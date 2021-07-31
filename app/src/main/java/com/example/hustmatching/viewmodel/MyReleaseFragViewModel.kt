@@ -4,9 +4,15 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.hustmatching.base.BaseApplication
 import com.example.hustmatching.bean.NetPost
+import com.example.hustmatching.network.Repository
 import com.example.hustmatching.room.PostDatabase
+import com.example.hustmatching.utils.catch
+import com.example.hustmatching.utils.checkCode
+import com.example.hustmatching.utils.saveInfo
+import kotlinx.coroutines.launch
 import kotlin.concurrent.thread
 
 class MyReleaseFragViewModel(application: Application) : AndroidViewModel(application) {
@@ -35,16 +41,30 @@ class MyReleaseFragViewModel(application: Application) : AndroidViewModel(applic
         thread {
             val list= postDao.allPosts
             posts.postValue(list)
-            for (each in list){
-                Log.d("list","${each.tags}")
-            }
             Log.d("adapter", "post value")
+            Log.d("adapter", "$list")
+
 
         }
     }
 
     fun refresh(){
-
+        viewModelScope.launch {
+            try {
+                val response = Repository.getPosts()
+                if (response.code == 200) {
+                    val a = response.data
+                    // TODO: list<PostResponse> to List<NetPost>
+                    var list =ArrayList<NetPost>()
+                    posts.postValue(list)
+                    savePosts()
+                } else {
+                    checkCode(response)
+                }
+            } catch (e: Exception) {
+                catch(e)
+            }
+        }
     }
 
     fun savePosts(){

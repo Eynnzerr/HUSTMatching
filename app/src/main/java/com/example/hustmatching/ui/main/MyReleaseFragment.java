@@ -55,6 +55,7 @@ public class MyReleaseFragment extends Fragment {
         viewModel.loadPosts();
         viewModel.getPosts().observe(getViewLifecycleOwner(), posts -> {
             if (adapter == null) {
+                Log.d("adapter","changed");
                 adapter = new PostAdapter(viewModel.getPosts().getValue());
                 recyclerView.setAdapter(adapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
