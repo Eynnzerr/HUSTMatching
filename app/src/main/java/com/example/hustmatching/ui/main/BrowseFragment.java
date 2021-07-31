@@ -25,6 +25,7 @@ import com.example.hustmatching.databinding.FragmentBrowseBinding;
 import com.example.hustmatching.network.Api;
 import com.example.hustmatching.viewmodel.BrowseFragViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Retrofit;
@@ -36,8 +37,7 @@ public class BrowseFragment extends Fragment {
     private View view;
     private BrowseFragViewModel viewModel;
     private MatchedPostsAdapter adapter;
-    private List<NetPost> myPosts;
-    private int index;
+    private List<NetPost> myPosts;//寄了
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,7 +69,7 @@ public class BrowseFragment extends Fragment {
         });
 
         //对recyclerview进行测试
-        List<NetPost[]> netPosts = viewModel.getMatchedPosts();
+        List<NetPost[]> netPosts = new ArrayList<>();
         adapter = new MatchedPostsAdapter(netPosts);
         binding.postRv.setAdapter(adapter);
         binding.postRv.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -78,17 +78,28 @@ public class BrowseFragment extends Fragment {
         //首先从本地数据库取数据，如果不为空，则逐条根据mid发起请求得到匹配的发布，将原发布和匹配的发布整合成两个元素的数组添加至netPosts
         //最终以netPosts为数据源，显示recyclerview。
 
+        //可能要改成livedata observe
         myPosts = viewModel.getPosts().getValue();//取到本地的我的发布
-        for (NetPost myPost : myPosts) {
-            viewModel.findMatch(myPost.getMid());
+        if(myPosts != null) {
+            for (NetPost myPost : myPosts) {
+                viewModel.findMatch(myPost, myPost.getMid());//逐条发起匹配
+            }
         }
-        viewModel.getMatchOne().observe(getViewLifecycleOwner(), new Observer<NetPost>() {
+
+        /*
+        viewModel.getPosts().observe(getViewLifecycleOwner(), new Observer<List<NetPost>>() {
             @Override
-            public void onChanged(NetPost netPost) {
-                //完成匹配
-                NetPost[] matchPair = new NetPost[2];
-                matchPair[0] = myPosts.get(index);
-                index ++;
+            public void onChanged(List<NetPost> netPosts) {
+                myPosts = netPosts;
+            }
+        });*/
+
+        viewModel.getMatchedPostsLive().observe(getViewLifecycleOwner(), new Observer<List<NetPost[]>>() {
+            @Override
+            public void onChanged(List<NetPost[]> netPosts) {
+                //有新数据添加了
+                adapter.setMatchedPosts(netPosts);
+                adapter.notifyDataSetChanged();//添加至rv并刷新
             }
         });
 

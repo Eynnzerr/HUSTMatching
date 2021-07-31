@@ -29,6 +29,10 @@ public class MatchedPostsAdapter extends RecyclerView.Adapter<MatchedPostsAdapte
         this.matchedPosts = matchedPosts;
     }
 
+    public void setMatchedPosts(List<NetPost[]> matchedPosts) {
+        this.matchedPosts = matchedPosts;
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
