@@ -24,12 +24,17 @@ public class BrowseFragViewModel extends ViewModel {
             yourPost.setClassification(NetPostUtil.SEARCH_ITEM);
             yourPost.setTitle("匹配的发布" + i);
             List<String> tags = new ArrayList<>();
-            for(int j = 0; j < 6; j ++) {
+            for(int j = 0; j < 3; j ++) {
                 tags.add("关键词" + j);
             }
             yourPost.setTags(tags);
             netPosts[0] = myPost;
             netPosts[1] = yourPost;
+            yourPost.setTime("2021-7-30 上午");
+            yourPost.setLocation("韵酒");
+            yourPost.setDate("2021-7-31");
+            yourPost.setQq("123456789");
+            yourPost.setPhone("18055557780");
             matchedPosts.add(netPosts);
         }
         return matchedPosts;

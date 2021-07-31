@@ -1,6 +1,6 @@
 package com.example.hustmatching.adapter;
 
-import android.util.Log;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +22,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
 
     public PostAdapter(List<NetPost> posts) {
         this.posts = posts;
-        Log.d("adapter", "create");
+    }
+
+    public void setPosts(List<NetPost> posts) {
+        this.posts = posts;
     }
 
     @NonNull
@@ -34,7 +37,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
             @Override
             public void onClick(View v) {
                 //TODO 将当前选中的netpost详情传给下一碎片
-                Navigation.findNavController(v).navigate(R.id.action_myReleaseFragment_to_detailFragment);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("netPost", posts.get(viewHolder.getAdapterPosition()));
+                Navigation.findNavController(v).navigate(R.id.action_myReleaseFragment_to_detailFragment, bundle);
             }
         });
         return viewHolder;

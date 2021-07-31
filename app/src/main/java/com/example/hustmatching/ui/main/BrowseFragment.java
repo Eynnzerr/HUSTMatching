@@ -54,6 +54,13 @@ public class BrowseFragment extends Fragment {
         actionBar.setHomeAsUpIndicator(R.drawable.ic_baseline_menu_24);
         activity.getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        binding.browseSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO 点击时弹出隐藏的searchBar
+            }
+        });
+
         //对recyclerview进行测试
         List<NetPost[]> netPosts = viewModel.getMatchedPosts();
         adapter = new MatchedPostsAdapter(netPosts);
@@ -61,7 +68,7 @@ public class BrowseFragment extends Fragment {
         binding.postRv.setLayoutManager(new LinearLayoutManager(getContext()));
 
         //TODO 进入页面即请求接口，针对当前用户对其所有提交逐个进行匹配，将结果显示在recyclerview上
-        //首先从本地数据库取数据，如果不为空，则逐条发起请求得到匹配的发布，将原发布和匹配的发布整合成两个元素的数组添加至netPosts
+        //首先从本地数据库取数据，如果不为空，则逐条根据mid发起请求得到匹配的发布，将原发布和匹配的发布整合成两个元素的数组添加至netPosts
         //最终以netPosts为数据源，显示recyclerview。
 
 

@@ -26,8 +26,8 @@ public interface PostDao {
     void deleteAllPosts();
 
     //查询特定项
-    @Query("SELECT * FROM NetPost WHERE title = :title")
-    NetPost getNetPost(String title);
+    //@Query("SELECT * FROM NetPost WHERE title = :title")
+    //NetPost getNetPost(String title);
 
     @Query("SELECT * FROM NetPost")
     List<NetPost> getAllPosts();

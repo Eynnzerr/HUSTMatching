@@ -9,11 +9,12 @@ import androidx.room.TypeConverters;
 import com.example.hustmatching.room.TagConverter;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @TypeConverters(TagConverter.class)
-public class NetPost {
+public class NetPost implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
@@ -44,6 +45,8 @@ public class NetPost {
     @ColumnInfo(name = "location")
     @SerializedName("location")
     private String location;
+    @ColumnInfo(name = "uniqueCode")
+    private int mid;//标识一篇发布的唯一ID，不赋初始值，而是在发布成功上传至后端后的回调中用后端传的值赋值。作为匹配的唯一需要参数
 
     public int getId() {
         return id;
@@ -123,6 +126,14 @@ public class NetPost {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public int getMid() {
+        return mid;
+    }
+
+    public void setMid(int mid) {
+        this.mid = mid;
     }
 
     @NonNull

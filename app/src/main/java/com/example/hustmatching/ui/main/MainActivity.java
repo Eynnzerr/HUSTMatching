@@ -43,8 +43,10 @@ public class MainActivity extends AppCompatActivity implements EditAdapter.SaveE
     @Override
     public void SaveEdit(Integer position, String string) {
         try {
-            Log.d("SaveEdit", "SaveEdit: " + string + " at pos " + position);
-            viewModel.addTag(position, string);
+            if(position < 3) {
+                Log.d("SaveEdit", "SaveEdit: " + string + " at pos " + position);
+                viewModel.addTag(position, string);
+            }
         }
         catch (Exception e) {
             e.printStackTrace();

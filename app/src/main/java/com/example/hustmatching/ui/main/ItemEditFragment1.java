@@ -1,5 +1,6 @@
 package com.example.hustmatching.ui.main;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Build;
@@ -17,16 +18,22 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.DatePicker;
+import android.widget.Toast;
 
 import com.example.hustmatching.R;
 import com.example.hustmatching.adapter.EditAdapter;
 import com.example.hustmatching.bean.NetPost;
 import com.example.hustmatching.databinding.FragmentItemEdit1Binding;
 import com.example.hustmatching.network.Api;
+import com.example.hustmatching.network.UserService;
+import com.example.hustmatching.response.Response;
 import com.example.hustmatching.room.GsonInstance;
+import com.example.hustmatching.room.PostDatabase;
 import com.example.hustmatching.utils.AlertDialogUtil;
 import com.example.hustmatching.utils.NetPostUtil;
+import com.example.hustmatching.utils.Test;
 import com.example.hustmatching.viewmodel.ItemEditFrag1ViewModel;
 import com.example.hustmatching.viewmodel.MainActivityViewModel;
 
@@ -36,6 +43,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -49,6 +58,8 @@ public class ItemEditFragment1 extends Fragment {
 
     private EditAdapter keyAdapter;
     private EditAdapter infoAdapter;
+
+    private int spinnerPosition;//应后端要求，将spinner值转为int
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -93,6 +104,25 @@ public class ItemEditFragment1 extends Fragment {
             }
         });
 
+        binding.back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
+
+        binding.timeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                spinnerPosition = position;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         binding.btnRelease.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,7 +137,7 @@ public class ItemEditFragment1 extends Fragment {
                 netPost.setQq(binding.contactQq.getText().toString());//从ui获取
                 netPost.setPhone(binding.contactPhone.getText().toString());//从ui获取
                 netPost.setLocation(binding.infoLocation.getText().toString());//从ui获取
-                netPost.setTime(viewModel.getDate() + " " + binding.timeSpinner.getSelectedItem().toString());//从viewmodel和ui组合获取
+                netPost.setTime(viewModel.getDate() + " " + spinnerPosition);//从viewmodel和ui组合获取
 
                 Log.d(TAG, "Tags: " + activityViewModel.getTags());
 
@@ -131,6 +161,7 @@ public class ItemEditFragment1 extends Fragment {
                         Navigation.findNavController(v).navigate(R.id.action_itemEditFragment1_to_myReleaseFragment);
                     }
                 });
+        });
 
             }
         });
@@ -143,8 +174,10 @@ public class ItemEditFragment1 extends Fragment {
     private void initKeyRecyclerView(RecyclerView recyclerView) {
         MainActivityViewModel activityViewModel = new ViewModelProvider(getActivity()).get(MainActivityViewModel.class);
         String[] titles = activityViewModel.getTitles();
-        for(String title : titles)
-            viewModel.addKeyWord(title);
+        if(viewModel.getKeywords().isEmpty()) {
+            for(String title : titles)
+                viewModel.addKeyWord(title);
+        }
         keyAdapter = new EditAdapter(viewModel.getKeywords(), this.getActivity());
         keyAdapter.setKeys(activityViewModel.getKeys());
         recyclerView.setAdapter(keyAdapter);
@@ -188,6 +221,7 @@ public class ItemEditFragment1 extends Fragment {
         map.put("qq", netPost.getQq());
         map.put("phone", netPost.getPhone());
         map.put("date", netPost.getDate());
+        Log.d(TAG, "getFieldMap: " + map);
         return map;
     }
 }
