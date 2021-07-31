@@ -1,37 +1,58 @@
 package com.example.hustmatching.viewmodel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.MutableLiveData
+import com.example.hustmatching.base.BaseApplication
 import com.example.hustmatching.bean.NetPost
 import com.example.hustmatching.room.PostDatabase
-import com.example.hustmatching.utils.NetPostUtil
-import java.util.*
+import kotlin.concurrent.thread
 
 class MyReleaseFragViewModel(application: Application) : AndroidViewModel(application) {
 
-    private var posts: MutableList<NetPost>? = null
+    val posts = MutableLiveData<List<NetPost>>()
+    val postDao = PostDatabase.getDataBase(BaseApplication.getContext()).postDao
 
-
-
-    fun getPosts(): List<NetPost> {
-        //模拟假数据，日后可删
-        posts = ArrayList()
-        for (i in 0..9) {
-            val myPost = NetPost()
-            myPost.classification = NetPostUtil.SEARCH_ITEM
-            myPost.title = "我的发布$i"
-            val tags: MutableList<String> = ArrayList()
-            for (j in 0..5) {
-                tags.add("关键词$j")
+    //    fun getPosts(): List<NetPost> {
+//        //模拟假数据，日后可删
+//        posts = ArrayList()
+//        for (i in 0..9) {
+//            val myPost = NetPost()
+//            myPost.classification = NetPostUtil.SEARCH_ITEM
+//            myPost.title = "我的发布$i"
+//            val tags: MutableList<String> = ArrayList()
+//            for (j in 0..5) {
+//                tags.add("关键词$j")
+//            }
+//            myPost.tags = tags
+//            (posts as ArrayList<NetPost>).add(myPost)
+//        }
+//        return posts as ArrayList<NetPost>
+//    }
+    fun loadPosts() {
+        Log.d("adapter", "post value before")
+        thread {
+            val list= postDao.allPosts
+            posts.postValue(list)
+            for (each in list){
+                Log.d("list","${each.tags}")
             }
-            myPost.tags = tags
-            (posts as ArrayList<NetPost>).add(myPost)
+            Log.d("adapter", "post value")
+
         }
-        return posts as ArrayList<NetPost>
     }
 
-    val mPosts: LiveData<MutableList<NetPost>>? = PostDatabase.getDataBase(application).postDao.allPostsLive
+    fun refresh(){
 
+    }
+
+    fun savePosts(){
+        postDao.deleteAllPosts()
+        posts.value?.let {
+            for ( each in it ){
+                postDao.insertPost(each)
+            }
+        }
+    }
 }

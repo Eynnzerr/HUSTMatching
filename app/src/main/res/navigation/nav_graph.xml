@@ -10,18 +10,10 @@
         android:name="com.example.hustmatching.ui.main.ReleaseFragment" >
         <action
             android:id="@+id/action_releaseFragment_to_searchItemFragment"
-            app:destination="@id/searchItemFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:destination="@id/searchItemFragment" />
         <action
             android:id="@+id/action_releaseFragment_to_searchPeopleFragment"
-            app:destination="@id/searchPeopleFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:destination="@id/searchPeopleFragment" />
     </fragment>
     <fragment
         android:id="@+id/browseFragment"
@@ -30,11 +22,7 @@
         tools:layout="@layout/fragment_browse" >
         <action
             android:id="@+id/action_browseFragment_to_detailFragment"
-            app:destination="@id/detailFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:destination="@id/detailFragment" />
     </fragment>
     <fragment
         android:id="@+id/personalFragment"
@@ -43,25 +31,13 @@
         tools:layout="@layout/fragment_personal" >
         <action
             android:id="@+id/action_personalFragment_to_myInfoFragment"
-            app:destination="@id/myInfoFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:destination="@id/myInfoFragment" />
         <action
             android:id="@+id/action_personalFragment_to_myContactFragment"
-            app:destination="@id/myContactFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:destination="@id/myContactFragment" />
         <action
             android:id="@+id/action_personalFragment_to_myMatchFragment"
-            app:destination="@id/myReleaseFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:destination="@id/myReleaseFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchItemFragment"
@@ -70,11 +46,7 @@
         tools:layout="@layout/fragment_search_item" >
         <action
             android:id="@+id/action_searchItemFragment_to_itemEditFragment1"
-            app:destination="@id/itemEditFragment1"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:destination="@id/itemEditFragment1" />
     </fragment>
     <fragment
         android:id="@+id/itemEditFragment1"
@@ -84,10 +56,7 @@
         <action
             android:id="@+id/action_itemEditFragment1_to_myReleaseFragment"
             app:destination="@id/myReleaseFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:popUpTo="@id/releaseFragment"/>
     </fragment>
     <fragment
         android:id="@+id/searchPeopleFragment"
@@ -110,11 +79,7 @@
         tools:layout="@layout/fragment_my_release" >
         <action
             android:id="@+id/action_myReleaseFragment_to_detailFragment"
-            app:destination="@id/detailFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:destination="@id/detailFragment" />
     </fragment>
     <fragment
         android:id="@+id/myContactFragment"

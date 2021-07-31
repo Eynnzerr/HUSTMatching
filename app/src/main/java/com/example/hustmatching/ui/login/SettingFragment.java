@@ -61,8 +61,9 @@ public class SettingFragment extends Fragment {
             if (logined){
                 viewModel.getLogined().postValue(false);
                 Intent intent = new Intent(getActivity(), MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 getActivity().startActivity(intent);
+                getActivity().finish();
             }
         });
 

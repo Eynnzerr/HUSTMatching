@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements EditAdapter.SaveE
         NavigationUI.setupWithNavController(binding.bottomNavigation, navController);
 
         Toast.makeText(this,"登录成功",Toast.LENGTH_LONG).show();
-        Log.d("MainActivity:", "token=" + Repository.INSTANCE.getToken());
+        Log.d("token", Repository.INSTANCE.getToken());
     }
 
 

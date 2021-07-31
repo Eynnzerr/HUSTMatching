@@ -27,10 +27,8 @@ import com.example.hustmatching.adapter.EditAdapter;
 import com.example.hustmatching.bean.NetPost;
 import com.example.hustmatching.databinding.FragmentItemEdit1Binding;
 import com.example.hustmatching.network.Api;
-import com.example.hustmatching.network.Repository;
-import com.example.hustmatching.network.Test1;
-import com.example.hustmatching.network.TestRecption;
 import com.example.hustmatching.network.UserService;
+import com.example.hustmatching.response.Response;
 import com.example.hustmatching.room.GsonInstance;
 import com.example.hustmatching.room.PostDatabase;
 import com.example.hustmatching.utils.AlertDialogUtil;
@@ -39,17 +37,14 @@ import com.example.hustmatching.utils.Test;
 import com.example.hustmatching.viewmodel.ItemEditFrag1ViewModel;
 import com.example.hustmatching.viewmodel.MainActivityViewModel;
 
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -142,24 +137,36 @@ public class ItemEditFragment1 extends Fragment {
                 netPost.setQq(binding.contactQq.getText().toString());//从ui获取
                 netPost.setPhone(binding.contactPhone.getText().toString());//从ui获取
                 netPost.setLocation(binding.infoLocation.getText().toString());//从ui获取
-                netPost.setTime(viewModel.getDate() + "-" + binding.timeSpinner.getSelectedItem().toString());//从viewmodel和ui组合获取
+                netPost.setTime(viewModel.getDate() + " " + spinnerPosition);//从viewmodel和ui组合获取
 
+                Log.d(TAG, "Tags: " + activityViewModel.getTags());
 
-                Log.d(TAG, "Tags: " + netPost.getTags());
-                Log.d(TAG, "TagsJson: " + GsonInstance.getInstance().getGson().toJson(netPost.getTags()));
-                Log.d(TAG, "onClick: " + netPost.toString());
-                viewModel.addPostToDatabase(netPost, getContext());//保存副本至本地数据库
-                //TODO 难以理解的bug 明明log显示数据好端端的，就是在传入typeConverter的时候怎么都是空值？ 我nm从10点修到凌晨2点都没修好这b玩意
 
                 Map<String,String> fieldMap = getFieldMap(netPost);
-                //TODO 调用接口发送请求
 
-                activityViewModel.resetTags();//发起一次请求后要清空tags
-                Toast.makeText(getActivity(),"发布成功",Toast.LENGTH_SHORT).show();
-                viewModel.resetKeyWord();
-                getActivity().onBackPressed();//跳转回上个页面
+                viewModel.sendPosts(fieldMap);
+
+                viewModel.getSended().observe(getViewLifecycleOwner(),sended -> {
+                    if (sended){
+                        viewModel.getSended().postValue(false);
+
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                viewModel.addPostToDatabase(netPost, getContext());//保存副本至本地数据库
+                            }
+                        }).start();
+
+                        activityViewModel.resetTags();//发起一次请求后要清空tags
+                        Navigation.findNavController(v).navigate(R.id.action_itemEditFragment1_to_myReleaseFragment);
+                    }
+                });
+
+
             }
         });
+
+
 
         return view;
     }
@@ -204,13 +211,12 @@ public class ItemEditFragment1 extends Fragment {
     //将NetPost对象实例转换成POST请求需要的fieldMap
     private Map<String, String> getFieldMap(NetPost netPost) {
         Map<String, String> map = new HashMap<>();
+        map.put("studentID", "U201917277");
         map.put("title",netPost.getTitle());
         map.put("classification", netPost.getClassification());
         map.put("tags", GsonInstance.getInstance().getGson().toJson(netPost.getTags()));
         map.put("detail", netPost.getDetail());
-        int lastIndex = netPost.getTime().lastIndexOf("-");
-        map.put("time",netPost.getTime().substring(0,lastIndex+1) + spinnerPosition);
-        //map.put("time",netPost.getTime());
+        map.put("time",netPost.getTime());
         map.put("location", netPost.getLocation());
         map.put("qq", netPost.getQq());
         map.put("phone", netPost.getPhone());

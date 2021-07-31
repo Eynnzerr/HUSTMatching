@@ -7,5 +7,8 @@ object Api {
     const val REGISTER_URL:String = "api/user/register/info"
     const val SEND_VERIFY_URL:String = "api/user/auth/send"
     const val VERIFY_URL:String = "api/user/register/auth"
-    const val SEND_POST:String = "api/seek/object"//发送一篇寻物发布
+    const val SEARCH_ITEM_URL:String = "api/seek/object"//发送一篇发布
+    const val SEARCH_PERSON_URL:String ="/api/seek/person"
+    const val MATCH_URL:String ="/api/seek/match"
+    const val TEST_URL :String = "/test/token"
 }
