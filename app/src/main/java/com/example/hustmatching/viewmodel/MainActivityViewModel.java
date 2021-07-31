@@ -9,7 +9,7 @@ public class MainActivityViewModel extends ViewModel {
     private String[] titles;
     private String[] keys;
     private String classification;
-    private List<String> tags = new ArrayList<>();
+    private List<String> tags;
 
     public String[] getTitles() {
         return titles;
@@ -36,7 +36,7 @@ public class MainActivityViewModel extends ViewModel {
     }
 
     public void addTag(int pos, String tag) {
-        tags.add(pos, tag);
+        tags.set(pos, tag);
     }
 
     public void resetTags() {
@@ -45,5 +45,12 @@ public class MainActivityViewModel extends ViewModel {
 
     public List<String> getTags() {
         return tags;
+    }
+
+    public MainActivityViewModel() {
+        tags = new ArrayList<>();
+        tags.add("1");
+        tags.add("2");
+        tags.add("3");
     }
 }

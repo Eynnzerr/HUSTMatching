@@ -21,9 +21,13 @@ import com.example.hustmatching.R;
 import com.example.hustmatching.adapter.MatchedPostsAdapter;
 import com.example.hustmatching.bean.NetPost;
 import com.example.hustmatching.databinding.FragmentBrowseBinding;
+import com.example.hustmatching.network.Api;
 import com.example.hustmatching.viewmodel.BrowseFragViewModel;
 
 import java.util.List;
+
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class BrowseFragment extends Fragment {
 

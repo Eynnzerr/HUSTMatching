@@ -1,5 +1,6 @@
 package com.example.hustmatching.viewmodel;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.hustmatching.bean.NetPost;
@@ -39,4 +40,5 @@ public class BrowseFragViewModel extends ViewModel {
         }
         return matchedPosts;
     }
+
 }

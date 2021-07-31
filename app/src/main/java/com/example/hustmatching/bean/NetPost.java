@@ -13,7 +13,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@TypeConverters(TagConverter.class)
+@TypeConverters({TagConverter.class})
 public class NetPost implements Serializable {
 
     @PrimaryKey(autoGenerate = true)

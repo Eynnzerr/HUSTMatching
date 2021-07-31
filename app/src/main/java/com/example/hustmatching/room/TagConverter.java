@@ -12,7 +12,7 @@ import java.util.List;
 public class TagConverter {
 
     @TypeConverter
-    public String tagListToString(List<String> list)
+    public static String tagListToString(List<String> list)
     {
         Log.d("Converter list:", list.toString());
         Log.d("Converter toJson:",GsonInstance.getInstance().getGson().toJson(list));
@@ -20,7 +20,7 @@ public class TagConverter {
     }
 
     @TypeConverter
-    public List<String> StringToSongList(String json)
+    public static List<String> StringToSongList(String json)
     {
         Type listType = new TypeToken<List<String>>(){}.getType();
         return GsonInstance.getInstance().getGson().fromJson(json,listType);
