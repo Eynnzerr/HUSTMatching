@@ -36,6 +36,7 @@ class ItemEditFrag1ViewModel : ViewModel() {
 
     fun addPostToDatabase(post: NetPost, context: Context) {
         Thread {
+            Log.d("addToDataBase","开始向数据库存储mid=" + post.mid)
             PostDatabase.getDataBase(context).postDao.insertPost(post)
         }.start()
     }

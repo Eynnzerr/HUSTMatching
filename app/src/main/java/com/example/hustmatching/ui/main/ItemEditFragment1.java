@@ -164,7 +164,7 @@ public class ItemEditFragment1 extends Fragment {
                     if (sended){
                         viewModel.getSended().postValue(false);
                         activityViewModel.resetTags();//发起一次请求后要清空tags
-                        Navigation.findNavController(v).navigate(R.id.action_itemEditFragment1_to_myReleaseFragment);
+                        getActivity().onBackPressed();
                     }
                 });
 
@@ -224,12 +224,24 @@ public class ItemEditFragment1 extends Fragment {
         map.put("tag3",netPost.getTags().get(2));
         map.put("detail", netPost.getDetail());
         int index = netPost.getTime().lastIndexOf("-");
-        map.put("time",netPost.getTime().substring(0, index+1) + spinnerPosition);
+        map.put("time",formatDate(netPost.getTime().substring(0, index+1)) + spinnerPosition);
         map.put("location", netPost.getLocation());
         map.put("qq", netPost.getQq());
         map.put("phone", netPost.getPhone());
         map.put("date", netPost.getDate());
         Log.d(TAG, "getFieldMap: " + map);
         return map;
+    }
+
+    private String formatDate(String time) {
+        //2020-1-13
+        String[] times = time.split("-");
+        int month = Integer.parseInt(times[1]);
+        if(month < 10) {
+            String newMonth = "0" + month;
+            return times[0] + "-" + newMonth + "-" + times[2];
+        }
+        Log.d(TAG, "formatDate: " + time);
+        return time;
     }
 }

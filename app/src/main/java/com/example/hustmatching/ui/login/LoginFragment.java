@@ -53,7 +53,7 @@ public class LoginFragment extends Fragment {
             }
         });
 
-        viewModel.tryLogin();
+        //viewModel.tryLogin();
 
         return view;
     }

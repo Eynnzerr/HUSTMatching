@@ -48,6 +48,7 @@ public class BrowseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         viewModel = new ViewModelProvider(this).get(BrowseFragViewModel.class);
+        //viewModel = new ViewModelProvider(this,new ViewModelProvider.AndroidViewModelFactory(getActivity().getApplication())).get(BrowseFragViewModel.class);
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_browse, container, false);
         view = binding.getRoot();
@@ -79,20 +80,24 @@ public class BrowseFragment extends Fragment {
         //最终以netPosts为数据源，显示recyclerview。
 
         //可能要改成livedata observe
-        myPosts = viewModel.getPosts().getValue();//取到本地的我的发布
-        if(myPosts != null) {
-            for (NetPost myPost : myPosts) {
-                viewModel.findMatch(myPost, myPost.getMid());//逐条发起匹配
-            }
-        }
+        //myPosts = viewModel.getPosts().getValue();//取到本地的我的发布
+        //if(myPosts != null) {
+            //for (NetPost myPost : myPosts) {
+                //viewModel.findMatch(myPost, myPost.getMid());//逐条发起匹配
+            //}
+        //}
 
-        /*
         viewModel.getPosts().observe(getViewLifecycleOwner(), new Observer<List<NetPost>>() {
             @Override
             public void onChanged(List<NetPost> netPosts) {
                 myPosts = netPosts;
+                if(myPosts != null) {
+                    for (NetPost myPost : myPosts) {
+                        viewModel.findMatch(myPost, myPost.getMid());//逐条发起匹配
+                    }
+                }
             }
-        });*/
+        });
 
         viewModel.getMatchedPostsLive().observe(getViewLifecycleOwner(), new Observer<List<NetPost[]>>() {
             @Override

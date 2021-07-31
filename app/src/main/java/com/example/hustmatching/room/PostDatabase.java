@@ -10,7 +10,7 @@ import androidx.room.TypeConverters;
 import com.example.hustmatching.bean.NetPost;
 
 @TypeConverters({TagConverter.class})
-@Database(entities = {NetPost.class},version = 2,exportSchema = false)
+@Database(entities = {NetPost.class},version = 3,exportSchema = false)
 public abstract class PostDatabase extends RoomDatabase {
     //singleton
     private static final String DATABASE_NAME = "songlist_database";//复制的名字忘改了

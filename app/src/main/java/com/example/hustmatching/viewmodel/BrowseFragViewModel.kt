@@ -1,9 +1,8 @@
 package com.example.hustmatching.viewmodel
 
+import android.app.Application
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.hustmatching.base.BaseApplication
 import com.example.hustmatching.bean.NetPost
 import com.example.hustmatching.network.Repository
@@ -51,11 +50,17 @@ class BrowseFragViewModel : ViewModel() {
     val matchedPostsLive: MutableLiveData<MutableList<Array<NetPost?>>?> = MutableLiveData(matchedPosts)
 
     fun findMatch(myPost: NetPost, mid: Int){
-        Log.d("map","$mid")
+        Log.d("mid","$mid")
         viewModelScope.launch {
             try {
                 val response = Repository.match(mid)
+                Log.d("findMatch","code:" + response.code);
+                Log.d("findMatch","msg:" + response.msg);
                 if (response.code == 200){
+                    Log.d("findMatch","响应成功");
+                    if (response.data != null) {
+                        Log.d("findMatch","匹配标题" + response.data.title);
+                    }
                     var matchedPost: NetPost = NetPost()
                     matchedPost.classification = response.data.classification
                     matchedPost.date = response.data.date
@@ -76,6 +81,7 @@ class BrowseFragViewModel : ViewModel() {
                     (matchedPosts as ArrayList<Array<NetPost?>>).add(netPosts)
                     //包装返回的数据为二元组并加入列表
                 } else{
+                    Log.d("findMatch","响应失败");
                     checkCode(response)
                 }
             } catch (e: Exception) {
@@ -85,10 +91,10 @@ class BrowseFragViewModel : ViewModel() {
     }
 
 
-    val posts = MutableLiveData<List<NetPost>>()
-    val postDao = PostDatabase.getDataBase(BaseApplication.getContext()).postDao
+    val posts : LiveData<List<NetPost>> = PostDatabase.getDataBase(BaseApplication.getContext()).postDao.allPostsLive
+    //val postDao = PostDatabase.getDataBase(BaseApplication.getContext()).postDao
 
-    fun loadPosts() {
+    /*fun loadPosts() {
         Log.d("adapter", "post value before")
         thread {
             val list= postDao.allPosts
@@ -99,5 +105,5 @@ class BrowseFragViewModel : ViewModel() {
             Log.d("adapter", "post value")
 
         }
-    }
+    }*/
 }

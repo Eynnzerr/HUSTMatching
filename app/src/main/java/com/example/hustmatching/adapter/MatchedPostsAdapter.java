@@ -61,6 +61,7 @@ public class MatchedPostsAdapter extends RecyclerView.Adapter<MatchedPostsAdapte
 
     @Override
     public int getItemCount() {
+        if( matchedPosts == null ) return 0;
         return matchedPosts.size();
     }
 
