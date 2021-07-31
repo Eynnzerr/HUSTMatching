@@ -18,6 +18,7 @@ import kotlin.concurrent.thread
 
 class BrowseFragViewModel : ViewModel() {
     private var matchedPosts: MutableList<Array<NetPost?>>? = null
+
     /*
     fun getMatchedPosts(): List<Array<NetPost?>> {
         //模拟假数据用于测试，后期可以删除
@@ -48,7 +49,7 @@ class BrowseFragViewModel : ViewModel() {
     }*/
 
 
-    val matchedPostsLive: MutableLiveData<MutableList<Array<NetPost?>>?> = MutableLiveData(matchedPosts)
+    val matchedPostsLive = MutableLiveData<MutableList<Array<NetPost?>>?> ()
 
     fun findMatch(myPost: NetPost, mid: Int){
         Log.d("map","$mid")
@@ -74,6 +75,7 @@ class BrowseFragViewModel : ViewModel() {
                     netPosts[0] = myPost
                     netPosts[1] = matchedPost
                     (matchedPosts as ArrayList<Array<NetPost?>>).add(netPosts)
+                    matchedPostsLive.postValue(matchedPosts)
                     //包装返回的数据为二元组并加入列表
                 } else{
                     checkCode(response)
@@ -93,9 +95,6 @@ class BrowseFragViewModel : ViewModel() {
         thread {
             val list= postDao.allPosts
             posts.postValue(list)
-            for (each in list){
-                Log.d("list","${each.tags}")
-            }
             Log.d("adapter", "post value")
 
         }

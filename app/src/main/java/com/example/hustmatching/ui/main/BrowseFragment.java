@@ -10,7 +10,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,6 +22,7 @@ import android.view.ViewGroup;
 
 import com.example.hustmatching.R;
 import com.example.hustmatching.adapter.MatchedPostsAdapter;
+import com.example.hustmatching.adapter.PostAdapter;
 import com.example.hustmatching.bean.NetPost;
 import com.example.hustmatching.databinding.FragmentBrowseBinding;
 import com.example.hustmatching.network.Api;
@@ -68,23 +71,39 @@ public class BrowseFragment extends Fragment {
             }
         });
 
+        SwipeRefreshLayout swipeRefreshLayout = view.findViewById(R.id.swipeRefresh);
+
+//        swipeRefreshLayout.setOnRefreshListener(() -> {
+//            viewModel.refresh();
+//        });
+
         //对recyclerview进行测试
-        List<NetPost[]> netPosts = new ArrayList<>();
-        adapter = new MatchedPostsAdapter(netPosts);
-        binding.postRv.setAdapter(adapter);
-        binding.postRv.setLayoutManager(new LinearLayoutManager(getContext()));
+//        List<NetPost[]> netPosts = new ArrayList<>();
+//        adapter = new MatchedPostsAdapter(netPosts);
+//        binding.postRv.setAdapter(adapter);
+//        binding.postRv.setLayoutManager(new LinearLayoutManager(getContext()));
 
         //TODO 进入页面即请求接口，针对当前用户对其所有提交逐个进行匹配，将结果显示在recyclerview上
         //首先从本地数据库取数据，如果不为空，则逐条根据mid发起请求得到匹配的发布，将原发布和匹配的发布整合成两个元素的数组添加至netPosts
         //最终以netPosts为数据源，显示recyclerview。
 
         //可能要改成livedata observe
-        myPosts = viewModel.getPosts().getValue();//取到本地的我的发布
-        if(myPosts != null) {
-            for (NetPost myPost : myPosts) {
-                viewModel.findMatch(myPost, myPost.getMid());//逐条发起匹配
+        viewModel.loadPosts();
+
+        viewModel.getPosts().observe(getViewLifecycleOwner(), posts -> {
+            if(posts != null) {
+                for (NetPost myPost : posts) {
+                    viewModel.findMatch(myPost, myPost.getMid());//逐条发起匹配
+                }
             }
-        }
+        });
+
+//        myPosts = viewModel.getPosts().getValue();//取到本地的我的发布
+//        if(myPosts != null) {
+//            for (NetPost myPost : myPosts) {
+//                viewModel.findMatch(myPost, myPost.getMid());//逐条发起匹配
+//            }
+//        }
 
         /*
         viewModel.getPosts().observe(getViewLifecycleOwner(), new Observer<List<NetPost>>() {
@@ -97,9 +116,15 @@ public class BrowseFragment extends Fragment {
         viewModel.getMatchedPostsLive().observe(getViewLifecycleOwner(), new Observer<List<NetPost[]>>() {
             @Override
             public void onChanged(List<NetPost[]> netPosts) {
-                //有新数据添加了
-                adapter.setMatchedPosts(netPosts);
-                adapter.notifyDataSetChanged();//添加至rv并刷新
+                if (adapter == null && netPosts!=null) {
+                    Log.d("adapter","changed");
+                    adapter = new MatchedPostsAdapter(viewModel.getMatchedPostsLive().getValue());
+                    binding.postRv.setAdapter(adapter);
+                    binding.postRv.setLayoutManager(new LinearLayoutManager(getContext()));
+                } else {
+                    adapter.notifyDataSetChanged();
+                    swipeRefreshLayout.setRefreshing(false);
+                }
             }
         });
 
