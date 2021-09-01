@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/item_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:textColor="@color/black"
+        android:textSize="19sp"/>
+
+    <EditText
+        android:id="@+id/item_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="请输入描述"
+        android:textSize="19sp"/>
+
+    <LinearLayout
+        android:id="@+id/hints"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/hint_1"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rec_bg"
+            android:text="关键词1"
+            android:textSize="9sp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:lines="1"/>
+
+        <TextView
+            android:id="@+id/hint_2"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rec_bg"
+            android:text="关键词2"
+            android:textSize="9sp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:lines="1"/>
+
+        <TextView
+            android:id="@+id/hint_3"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rec_bg"
+            android:text="关键词3"
+            android:textSize="9sp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:lines="1"/>
+
+        <TextView
+            android:id="@+id/hint_4"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rec_bg"
+            android:text="关键词4"
+            android:textSize="9sp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:lines="1"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#BDBDBD"/>
+
+</LinearLayout>

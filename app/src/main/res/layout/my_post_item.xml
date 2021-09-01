@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="myPost"
+            type="com.example.hustmatching.bean.NetPost" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        app:cardCornerRadius="10dp"
+        android:elevation="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/classification_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{myPost.classification}"
+                android:layout_margin="8dp"/>
+
+            <TextView
+                android:id="@+id/match_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{myPost.date}"
+                android:layout_alignParentRight="true"
+                android:layout_margin="8dp"/>
+
+            <TextView
+                android:id="@+id/match_divide"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#BDBDBD"
+                android:layout_below="@id/classification_2"/>
+
+            <TextView
+                android:id="@+id/match_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/match_divide"
+                android:text="@{myPost.title}"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="30dp"
+                android:textSize="25sp"/>
+
+            <TextView
+                android:id="@+id/keyword_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/rec_bg"
+                android:text="@{myPost.tags[0]}"
+                android:textColor="@color/white"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:layout_below="@id/match_title"/>
+
+            <TextView
+                android:id="@+id/keyword_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/rec_bg"
+                android:text="@{myPost.tags[1]}"
+                android:textColor="@color/white"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:layout_below="@id/keyword_1"/>
+
+            <TextView
+                android:id="@+id/keyword_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/rec_bg"
+                android:text="@{myPost.tags[2]}"
+                android:textColor="@color/white"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:layout_below="@id/keyword_2"/>
+
+            <TextView
+                android:id="@+id/keyword_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/rec_bg"
+                android:text="@{myPost.time}"
+                android:textColor="@color/white"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:layout_below="@id/keyword_3"/>
+
+            <TextView
+                android:id="@+id/keyword_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/keyword_2"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/rec_bg"
+                android:text="@{myPost.location}"
+                android:textColor="@color/white"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:layout_below="@id/keyword_1"/>
+
+            <TextView
+                android:id="@+id/keyword_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/keyword_3"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/rec_bg"
+                android:text="其他"
+                android:textColor="@color/white"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:layout_below="@id/keyword_5"/>
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="loginFragListener"
+            type="com.example.hustmatching.databinding.FragEmailLoginListener" />
+        <variable
+            name="viewModel"
+            type="com.example.hustmatching.viewmodel.EmailRegisterFragViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.login.LoginByEmailFragment">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/login_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HUST matcher"
+                android:textColor="#F1A100"
+                android:textSize="35sp"
+                android:layout_marginTop="160dp"
+                android:layout_marginLeft="30dp" />
+
+            <TextView
+                android:id="@+id/login_line"
+                android:layout_width="350dp"
+                android:layout_height="1dp"
+                android:background="#F1A100"
+                android:layout_below="@id/login_title"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp" />
+
+            <com.example.hustmatching.view.EmailEditText
+                android:id="@+id/email_bar"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/login_line"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"
+                app:barText="@={viewModel.studentID}"/>
+
+            <com.example.hustmatching.view.AuthenticationEditText
+                android:id="@+id/authens_bar"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/email_bar"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="18dp"
+                app:barText="@={viewModel.auth}"/>
+
+            <Button
+                android:id="@+id/btn_login"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/authens_bar"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/rec_bg_2"
+                android:text="登录"
+                android:textColor="@color/white"
+                android:textSize="28sp"
+                android:onClick="@{loginFragListener::onButtonClicked}"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_below="@id/btn_login"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/to_password_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="帐密登录"
+                    android:layout_toLeftOf="@id/division"
+                    android:onClick="@{loginFragListener::onButtonClicked}"/>
+
+                <TextView
+                    android:id="@+id/division"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/black"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp" />
+
+                <TextView
+                    android:id="@+id/to_register"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="新用户注册"
+                    android:layout_toRightOf="@id/division"
+                    android:onClick="@{loginFragListener::onButtonClicked}"/>
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </FrameLayout>
+</layout>
